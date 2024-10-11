@@ -1,4 +1,4 @@
-<div class="flex flex-col w-full">
+<form class="flex flex-col w-full" [formGroup]="form">
     <h3 class="text-center text-white font-bold text-xl">Completa los datos</h3>
 
     <div class="flex flex-col mt-4 p-4 bg-yellow-50 rounded-md gap-y-3">
@@ -56,14 +56,16 @@
 
         <div class="flex justify-between items-center">
             <label>Efectivo:</label>
-            <input type="radio" class="h-5 w-5" />
+            <input type="radio" class="h-5 w-5" name="paymentMethod"  value="efectivo"
+                formControlName="paymentMethod" />
         </div>
 
         <input type="text" class="rounded-md w-full py-1.5 px-2 border-2 border-yellow-200 bg-gray-50 focus:border-2 focus:border-yellow-500 focus:ring-0 focus:outline-none" />
 
         <div class="flex justify-between items-center">
             <label>Trasnferencia:</label>
-            <input type="radio" class="h-5 w-5 checked:border-yellow-200" />
+            <input type="radio" class="h-5 w-5" value="transferencia" name="paymentMethod" 
+                formControlName="paymentMethod" />
         </div>
     </div>
 
@@ -71,8 +73,21 @@
         <h4 class="text-center font-semibold text-lg">Comentarios</h4>
 
         <div class="flex flex-col gap-y-0.5">
-            <label>Referencias:</label>
-            <textarea type="text" class="rounded-md py-1.5 h-16 px-2 border-2 border-yellow-200 bg-gray-50 focus:border-2 focus:border-yellow-500 focus:ring-0 focus:outline-none"></textarea>
+            <label>Comentarios:</label>
+            <textarea type="text" class="rounded-md py-1.5 h-16 px-2 border-2 border-yellow-200 bg-gray-50 focus:border-2 focus:border-yellow-500 focus:ring-0 focus:outline-none"
+                formControlName="comentaries"></textarea>
         </div>
     </div>
+</form>
+<div class="flex justify-between w-full mt-8">
+    <button class="bg-gray-500 rounded-md py-2.5 px-4 flex justify-center items-center text-black hover:bg-gray-400"
+        (click)="changePage(false)">
+        <i class="fa-solid fa-chevron-left"></i>
+        <p class="ml-2">Regresar</p>
+    </button>
+    <button class="bg-yellow-500 rounded-md py-2.5 px-4 flex justify-center items-center text-black hover:bg-yellow-400"
+        (click)="changePage(true)">
+        <p class="mr-2">Validar pedido</p>
+        <i class="fa-solid fa-check"></i>
+    </button>
 </div>

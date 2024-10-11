@@ -1,11 +1,16 @@
 import { Injectable } from '@angular/core';
 import { CartItem } from '../../interfaces/cart-item.interface';
+import { OrderDetailsService } from '../order-details/order-details.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
   private _productsToBuy: CartItem[] = [];
+
+  constructor(
+    private readonly _orderDetailsService: OrderDetailsService
+  ){}
 
   public get productsToBuy(): CartItem[] {
     return this._productsToBuy;
@@ -33,6 +38,11 @@ export class CartService {
     }
     this.productsToBuy.push(item);
     console.log(this._productsToBuy);
+  }
+
+  public purchase(orderId: string): void {
+    this._orderDetailsService.addOrderDetail(this._productsToBuy, orderId);
+    this._productsToBuy = [];
   }
 
   public deleteProduct(item: CartItem): void {
