@@ -18,8 +18,6 @@ export class ScheduleComponent implements OnInit {
   ngOnInit(): void {
     this._scheduleService.getSchedules()
       .subscribe(items => this.schedules = items);
-
-    this.schedules.sort((a, b) => (a.weekDayId > b.weekDayId) ? 1 : -1);
   }
 
   public get isOpen(): boolean {
