@@ -3,6 +3,7 @@ import { SidebarService } from '../../core/services/sidebar/sidebar.service';
 import { CartService } from '../../core/services/cart/cart.service';
 import { Order } from '../../core/interfaces/order.interface';
 import { OrdersService } from '../../core/services/orders/orders.service';
+import { OrderDetailsService } from '../../core/services/order-details/order-details.service';
 
 @Component({
   selector: 'app-cart',
@@ -16,7 +17,8 @@ export class CartComponent {
   constructor(
     private readonly _sidebarService: SidebarService,
     private readonly _cartService: CartService,
-    private readonly _ordersService: OrdersService
+    private readonly _ordersService: OrdersService,
+    private readonly _orderDetailService: OrderDetailsService
   ) { }
 
   public get isOpen(): boolean {
@@ -33,10 +35,14 @@ export class CartComponent {
 
   public finishOrder(orderComplete: Order): void {
     this._ordersService.addOrder(orderComplete)
-      .subscribe(x => console.log(x));
-      this.formPage = 1;
-      this._cartService.clearCart();
+      .subscribe(x => {
+        this._cartService.purchase(x.id);
+      }); 
+      
+    this.formPage = 1;
+
     this.closeSidebar();
+    
     alert('Pedido registrado exitosamente en la base de datos');
   }
 
