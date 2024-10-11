@@ -1,16 +1,11 @@
 <div class="bg-yellow-50 rounded-md p-4 w-full">
-    <ul class="flex flex-col w-full">
-        <li class="grid grid-cols-5 items-center border-b-2 border-yellow-300 py-2.5 gap-x-1 w-full">
-            <p class="col-span-3">Paste Pompompurin x 10</p>
-            <p>$123.32</p>
-            <div class="flex flex-col gap-y-1.5 text-sm">
-                <button class="p-1 bg-yellow-500 rounded-full text-white hover:bg-yellow-400">
-                    <i class="fa-solid fa-pencil"></i>
-                </button>
-                <button class="p-1 border border-red-600 rounded-full text-red-600 hover:bg-red-100">
-                    <i class="fa-solid fa-trash-can"></i>
-                </button>
-            </div>
-        </li>
+    <ul *ngIf="cartItems && cartItems.length > 0" class="flex flex-col w-full">
+        <cart-item-card *ngFor="let item of cartItems; let isLast = last;" [item]="item" [isLast]="isLast">
+        </cart-item-card>
     </ul>
+
+    <div *ngIf="!cartItems || (cartItems && cartItems.length == 0)" class="text-center text-xl italic">
+        No hay artículos todavía
+    </div>
+
 </div>

@@ -4,6 +4,7 @@ import { CartComponent } from './cart.component';
 import { ItemsPageComponent } from './pages/items-page/items-page.component';
 import { OrderDetailsPageComponent } from './pages/order-details-page/order-details-page.component';
 import { AddressDetailsPageComponent } from './pages/address-details-page/address-details-page.component';
+import { ItemCardComponent } from './components/item-card/item-card.component';
 
 
 
@@ -12,7 +13,8 @@ import { AddressDetailsPageComponent } from './pages/address-details-page/addres
     CartComponent,
     ItemsPageComponent,
     OrderDetailsPageComponent,
-    AddressDetailsPageComponent
+    AddressDetailsPageComponent,
+    ItemCardComponent
   ],
   imports: [
     CommonModule

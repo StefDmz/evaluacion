@@ -20,16 +20,16 @@
                     </div>
                 </div>
 
-                <div class="flex justify-between w-full">
+                <div class="flex justify-between w-full" *ngIf="numberCartItems > 0">
                     <button class="bg-gray-500 rounded-md py-2.5 px-4 flex justify-center items-center text-black hover:bg-gray-400"
                         *ngIf="formPage > 1"
-                        (click)="previousPage()">
+                        (click)="changePage(false)">
                         <i class="fa-solid fa-chevron-left"></i>
                         <p class="ml-2">Regresar</p>
                     </button>
                     <button class="bg-yellow-500 rounded-md py-2.5 px-4 flex justify-center items-center text-black hover:bg-yellow-400"
                         [class]="formPage === 1 ? 'w-full' : 'w-auto'"
-                        (click)="formPage === 3 ? previousPage() : nextPage()">
+                        (click)="formPage === 3 ? changePage(false) : changePage(true)">
                         <p class="mr-2">{{formPage ===3 ? 'Validar pago' : 'Continuar'}}</p>
                         <i class="fa-solid" [class]="formPage === 3 ? 'fa-check': 'fa-chevron-right'"></i>
                     </button>
