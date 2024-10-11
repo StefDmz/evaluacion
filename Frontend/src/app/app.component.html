@@ -1,15 +1,24 @@
-<div class="flex h-screen bg-yellow-400">
+<div class="flex h-screen bg-yellow-400" *ngIf="isRestaurantOpen; else noService">
   <shared-menu-sidebar 
     (onShowCart)="openSidebar('Cart')"
-    (onShowSchedule)="openModal()"
+    (onShowSchedule)="openSchedule()"
     (onCategorySelect)="categorySelect($event)">
   </shared-menu-sidebar>
   
   <div class="flex-1 overflow-y-auto p-6">
     <app-cart *ngIf="sidebarType == 'Cart'"></app-cart>
     
-    <app-schedule *ngIf="isModalOpen"></app-schedule>
-
+    
     <app-products [categorySelected]="categorySelected"></app-products>
   </div>
 </div>
+
+<app-schedule *ngIf="isModalOpen"></app-schedule>
+
+<ng-template #noService>
+  <div class="flex-1">
+  <shared-no-service-page
+    (onShowSchedule)="openSchedule()">
+  </shared-no-service-page>
+</div>
+</ng-template>
