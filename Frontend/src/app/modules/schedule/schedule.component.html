@@ -1,6 +1,6 @@
-<div class="fixed z-20 inset-0 bg-gray-900 bg-opacity-60 overflow-y-auto h-full w-full flex items-center justify-center animate__animated"
+<div class="fixed z-20 inset-0 bg-gray-900 bg-opacity-60 h-full w-full flex items-center justify-center animate__animated"
     [class]="!isClosing ? 'animate__fadeIn' : 'animate__fadeOut'">
-    <div class="relative shadow-xl rounded-lg bg-white max-w-[550px] w-full text-gray-900 animate__animated"
+    <div class="relative shadow-xl rounded-lg bg-white max-w-[550px] w-full text-gray-900 animate__animated my-6 max-h-[90vh] overflow-y-auto"
         [class]="!isClosing ? 'animate__fadeInDown' : 'animate__fadeOutUp'">
         <div class="flex justify-between p-6 items-center border-b border-gray-300">
             <h4 class="text-xl">Horarios de servicio</h4>
@@ -10,16 +10,17 @@
             </button>
         </div>
 
-        <div class="p-10 border-b border-gray-300 overflow-y-auto">
+        <div class="p-10 border-b border-gray-300">
             <div class="flex flex-col gap-y-4 w-full">
-                <div class="p-4 bg-yellow-100 border border-yellow-500 rounded-xl">
+
+                <div *ngFor="let item of schedules | sortPipe" class="p-4 bg-yellow-100 border border-yellow-500 rounded-xl">
                     <div class="flex gap-x-6 items-center">
                         <p class="text-yellow-500 text-xl">
                             <i class="fa-solid fa-clock"></i>
                         </p>
                         <div class="flex flex-col">
-                            <h5 class="font-semibold">Lunes</h5>
-                            <p>09:00 - 18:00</p>
+                            <h5 class="font-semibold">{{ item.day }}</h5>
+                            <p>{{ item.open }} - {{ item.close }}</p>
                         </div>
                     </div>
                 </div>

@@ -8,7 +8,7 @@ import { CartService } from '../../../../core/services/cart/cart.service';
   styles: ``
 })
 export class ItemsPageComponent implements OnInit {
-  public cartItems?: CartItem[];
+  public cartItems: CartItem[] = [];
 
   constructor(
     private readonly _cartService: CartService

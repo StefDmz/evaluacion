@@ -1,10 +1,10 @@
 <div class="bg-yellow-50 rounded-md p-4 w-full">
-    <ul *ngIf="cartItems && cartItems.length > 0" class="flex flex-col w-full">
+    <ul *ngIf="cartItems.length > 0" class="flex flex-col w-full">
         <cart-item-card *ngFor="let item of cartItems; let isLast = last;" [item]="item" [isLast]="isLast">
         </cart-item-card>
     </ul>
 
-    <div *ngIf="!cartItems || (cartItems && cartItems.length == 0)" class="text-center text-xl italic">
+    <div *ngIf="cartItems.length == 0" class="text-center text-xl italic">
         No hay artículos todavía
     </div>
 
