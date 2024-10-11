@@ -1,0 +1,40 @@
+<div class="fixed inset-0 z-10">
+    <div class="absolute inset-0 bg-zinc-900 bg-opacity-75"></div>
+    <section class="absolute inset-y-0 right-0 w-full max-w-[450px] flex bg-zinc-900 animate__animated"
+        [class]="isOpen ? 'animate__fadeInRightBig' : 'animate__fadeOutRight'">
+        <div class="w-full relative">
+            <div class="flex flex-col justify-between p-6 break-words h-full overflow-y-auto">
+                <div class="flex flex-col">
+                    <div class="flex justify-between items-center text-yellow-500">
+                        <h3 class="text-2xl font-semibold">Carrito</h3>
+
+                        <button class="text-3xl" (click)="closeSidebar()">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+
+                    <div class="my-6 w-full text-gray-900">
+                        <cart-items-page *ngIf="formPage === 1"></cart-items-page>
+                        <cart-address-details-page *ngIf="formPage === 2"></cart-address-details-page>
+                        <cart-order-details-page *ngIf="formPage === 3"></cart-order-details-page>
+                    </div>
+                </div>
+
+                <div class="flex justify-between w-full">
+                    <button class="bg-gray-500 rounded-md py-2.5 px-4 flex justify-center items-center text-black hover:bg-gray-400"
+                        *ngIf="formPage > 1"
+                        (click)="previousPage()">
+                        <i class="fa-solid fa-chevron-left"></i>
+                        <p class="ml-2">Regresar</p>
+                    </button>
+                    <button class="bg-yellow-500 rounded-md py-2.5 px-4 flex justify-center items-center text-black hover:bg-yellow-400"
+                        [class]="formPage === 1 ? 'w-full' : 'w-auto'"
+                        (click)="formPage === 3 ? previousPage() : nextPage()">
+                        <p class="mr-2">{{formPage ===3 ? 'Validar pago' : 'Continuar'}}</p>
+                        <i class="fa-solid" [class]="formPage === 3 ? 'fa-check': 'fa-chevron-right'"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

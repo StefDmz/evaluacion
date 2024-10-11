@@ -7,6 +7,8 @@ import { provideHttpClient } from '@angular/common/http';
 
 import { SharedModule } from './shared/shared.module';
 import { ProductsModule } from './modules/products/products.module';
+import { CartModule } from './modules/cart/cart.module';
+import { ScheduleModule } from './modules/schedule/schedule.module';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { ProductsModule } from './modules/products/products.module';
     AppRoutingModule,
     SharedModule,
     ProductsModule,
+    CartModule,
+    ScheduleModule
   ],
   providers: [provideHttpClient()],
   bootstrap: [AppComponent]

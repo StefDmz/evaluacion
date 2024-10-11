@@ -1,7 +1,14 @@
 <div class="flex h-screen bg-yellow-400">
-  <shared-menu-sidebar></shared-menu-sidebar>
+  <shared-menu-sidebar 
+    (onShowCart)="openSidebar('Cart')"
+    (onShowSchedule)="openModal()">
+  </shared-menu-sidebar>
   
   <div class="flex-1 overflow-y-auto p-6">
+    <app-cart *ngIf="sidebarType == 'Cart'"></app-cart>
+    
+    <app-schedule *ngIf="isModalOpen"></app-schedule>
+
     <app-products></app-products>
   </div>
 </div>
