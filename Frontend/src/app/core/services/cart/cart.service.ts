@@ -26,11 +26,16 @@ export class CartService {
   }
 
   public addProduct(item: CartItem): void {
+    const index = this._productsToBuy.findIndex(x => x.product == item.product);
+    if(index > -1){
+      this._productsToBuy[index].quantity += item.quantity;
+      return;
+    }
     this.productsToBuy.push(item);
     console.log(this._productsToBuy);
   }
 
-  public quitProduct(item: CartItem): void {
+  public deleteProduct(item: CartItem): void {
     const index = this._productsToBuy.indexOf(item);
     this._productsToBuy.splice(index, 1);
   }
