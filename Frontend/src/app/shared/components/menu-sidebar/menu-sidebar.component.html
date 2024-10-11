@@ -16,7 +16,9 @@
                 </div>
                 <div class="flex flex-col justify-center text-lg font-medium">
                     <button class="flex justify-center items-center py-1.5 rounded-lg hover:bg-yellow-500 hover:text-white"
-                    *ngFor="let item of categories">
+                    *ngFor="let item of categories"
+                    (click)="selectCategory(item)"
+                    [class]="categorySelected === item ? 'bg-yellow-500 text-white' : ''">
                     <i [class]="'fa-solid ' + item.icon"></i>
                     <p class="ml-3">{{item.name}}</p>
                     </button>
@@ -28,9 +30,9 @@
         hover:-translate-y-1 hover:scale-110 duration-300"
         (click)="showCart()">
             <i class="fa-solid fa-cart-shopping text-xl"></i>
-            <p class="rounded-full bg-red-600 h-6 w-6 p-0.5 flex justify-center items-center"><span class="text-center">99</span></p>
+            <p class="rounded-full bg-red-600 h-6 w-6 p-0.5 flex justify-center items-center"><span class="text-center">{{ numberCartItems }}</span></p>
             <p>Artículos</p>
-            <p>$1080.99</p>
+            <p>{{ cartSubtotal | currency }}</p>
         </button>
     </div>
 </div>

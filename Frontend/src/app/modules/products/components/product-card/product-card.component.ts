@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Product } from '../../../../core/interfaces/product.interface';
 
 @Component({
   selector: 'product-card',
@@ -6,9 +7,11 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styles: ``
 })
 export class ProductCardComponent {
-  @Output() public onAddProduct: EventEmitter<void> = new EventEmitter();
+  @Input() public product!: Product;
 
-  public addProduct(): void {
-    this.onAddProduct.emit();
+  @Output() public onOpenSidebar: EventEmitter<Product> = new EventEmitter();
+
+  public openSidebar(): void {
+    this.onOpenSidebar.emit(this.product);
   }
 }

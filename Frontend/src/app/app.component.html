@@ -1,7 +1,8 @@
 <div class="flex h-screen bg-yellow-400">
   <shared-menu-sidebar 
     (onShowCart)="openSidebar('Cart')"
-    (onShowSchedule)="openModal()">
+    (onShowSchedule)="openModal()"
+    (onCategorySelect)="categorySelect($event)">
   </shared-menu-sidebar>
   
   <div class="flex-1 overflow-y-auto p-6">
@@ -9,6 +10,6 @@
     
     <app-schedule *ngIf="isModalOpen"></app-schedule>
 
-    <app-products></app-products>
+    <app-products [categorySelected]="categorySelected"></app-products>
   </div>
 </div>

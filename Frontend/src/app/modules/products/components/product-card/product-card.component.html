@@ -1,12 +1,12 @@
 <div class="flex flex-col flex-auto bg-gray-50 rounded-md w-full h-auto p-0.5 text-gray-900">
-    <img class="rounded-t-md" src="https://cdn.shopify.com/s/files/1/0683/0194/7201/files/GEe2jh9bgAAlNKX_95f7000e-8890-400c-8933-959fee5f6ed2.jpg?v=1711343302" />
+    <img class="rounded-t-md" [src]="product.image | imagePipe" />
     <div class="flex flex-col p-3.5 gap-y-2">
-        <h3 class="font-semibold text-xl break-all">Paste de Pompompurin</h3>
-        <p class="text-center">Masa amarilla sabor a flan delicioso, rebota cuando lo lanzas</p>
+        <h3 class="font-semibold text-xl break-all text-center">{{ product.name }}</h3>
+        <p class="text-center">{{ product.description }}</p>
         <div class="flex flex-wrap justify-center items-center md:flex-auto md:justify-between">
-            <p class="text-2xl font-bold text-black">$99.99</p>
+            <p class="text-2xl font-bold text-black">{{ product.price | currency }}</p>
             <button class="flex items-center py-1.5 px-2 rounded-lg bg-emerald-700 text-white hover:bg-emerald-900"
-                (click)="addProduct()">
+                (click)="openSidebar()">
                 <i class="fa-solid fa-cart-plus"></i>
                 <p class="ml-3">Comprar</p>
             </button>
