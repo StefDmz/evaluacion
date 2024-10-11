@@ -1,1 +1,45 @@
-<p>product-sidebar works!</p>
+<div class="fixed inset-0 z-10">
+    <div class="absolute inset-0 bg-zinc-900 bg-opacity-75"></div>
+    <section class="absolute inset-y-0 right-0 w-full max-w-[450px] flex bg-zinc-900 animate__animated"
+        [class]="isOpen ? 'animate__fadeInRightBig' : 'animate__fadeOutRight'">
+        <div class="w-full relative">
+            <div class="flex flex-col justify-between p-6 text-white break-words h-full">
+                <div class="flex flex-col">
+                    <div class="flex items-center justify-between text-yellow-500">
+                        <h3 class="text-2xl font-semibold">Paste Pompompurin</h3>
+
+                        <button class="text-3xl" (click)="closeSidebar()">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+
+                    <div class="mt-10 flex flex-col items-center justify-items-center w-full gap-y-14">
+                        <img class="w-36 h-36 rounded-md" src="https://cdn.shopify.com/s/files/1/0683/0194/7201/files/GEe2jh9bgAAlNKX_95f7000e-8890-400c-8933-959fee5f6ed2.jpg?v=1711343302" />
+
+                        <p class="text-center">
+                            Masa amarilla sabor a flan delicioso, rebota cuando lo lanzas
+                        </p>
+
+                        <div class="flex w-full justify-center items-center gap-x-4">
+                            <p>Cantidad: </p>
+                            <button
+                                class="w-10 h-10 rounded-full bg-transparent border border-white hover:bg-white hover:text-black flex justify-center items-center">
+                                <i class="fa-solid fa-minus"></i>
+                            </button>
+                            <p class="text-2xl font-semibold">1</p>
+                            <button
+                                class="w-10 h-10 rounded-full bg-transparent border border-white hover:bg-white hover:text-black flex justify-center items-center">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="bg-yellow-500 rounded-md py-2.5 flex justify-center items-center text-black hover:bg-yellow-400">
+                    <i class="fa-solid fa-cart-plus text-xl"></i>
+                    <p class="ml-3">Añadir 99 artículos por $1827.00</p>
+                </button>
+            </div>
+        </div>
+    </section>
+</div>
