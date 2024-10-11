@@ -6,7 +6,7 @@
         <span class="ml-1 text-sm italic text-yellow-500 font-semibold">x{{ item.quantity }}</span>
     </p>
     
-    <p>{{ item.product.price | currency }}</p>
+    <p>{{ (item.product.price * item.quantity) | currency }}</p>
     
     <div class="flex flex-col gap-y-1.5 text-sm">
         <button class="p-1 bg-yellow-500 rounded-full text-white hover:bg-yellow-400"
