@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { SidebarService } from '../../core/services/sidebar/sidebar.service';
 import { CartService } from '../../core/services/cart/cart.service';
+import { Order } from '../../core/interfaces/order.interface';
+import { OrdersService } from '../../core/services/orders/orders.service';
 
 @Component({
   selector: 'app-cart',
@@ -9,11 +11,13 @@ import { CartService } from '../../core/services/cart/cart.service';
 })
 export class CartComponent {
   public formPage: number = 1;
+  public order!: Order;
 
   constructor(
     private readonly _sidebarService: SidebarService,
-    private readonly _cartService: CartService
-  ){}
+    private readonly _cartService: CartService,
+    private readonly _ordersService: OrdersService
+  ) { }
 
   public get isOpen(): boolean {
     return this._sidebarService.isOpen;
@@ -23,8 +27,21 @@ export class CartComponent {
     return this._cartService.numberProducts;
   }
 
+  public getFirstPartOrder(firstPart: Order): void {
+    this.order = firstPart;
+  }
+
+  public finishOrder(orderComplete: Order): void {
+    this._ordersService.addOrder(orderComplete)
+      .subscribe(x => console.log(x));
+      this.formPage = 1;
+      this._cartService.clearCart();
+    this.closeSidebar();
+    alert('Pedido registrado exitosamente en la base de datos');
+  }
+
   public changePage(next: boolean): void {
-    if(next){
+    if (next) {
       this.formPage++;
       return;
     }

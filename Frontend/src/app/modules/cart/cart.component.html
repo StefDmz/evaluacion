@@ -15,23 +15,27 @@
 
                     <div class="my-6 w-full text-gray-900">
                         <cart-items-page *ngIf="formPage === 1"></cart-items-page>
-                        <cart-address-details-page *ngIf="formPage === 2"></cart-address-details-page>
-                        <cart-order-details-page *ngIf="formPage === 3"></cart-order-details-page>
+                        
+                        <cart-address-details-page 
+                            *ngIf="formPage === 2" 
+                            (onChangePage)="changePage($event)"
+                            (onContinueForm)="getFirstPartOrder($event)">
+                        </cart-address-details-page>
+                        
+                        <cart-order-details-page 
+                            *ngIf="formPage === 3"
+                            [order]="order"
+                            (onChangePage)="changePage($event)"
+                            (onFinishOrder)="finishOrder($event)">
+                        </cart-order-details-page>
                     </div>
                 </div>
 
-                <div class="flex justify-between w-full" *ngIf="numberCartItems > 0">
-                    <button class="bg-gray-500 rounded-md py-2.5 px-4 flex justify-center items-center text-black hover:bg-gray-400"
-                        *ngIf="formPage > 1"
-                        (click)="changePage(false)">
-                        <i class="fa-solid fa-chevron-left"></i>
-                        <p class="ml-2">Regresar</p>
-                    </button>
-                    <button class="bg-yellow-500 rounded-md py-2.5 px-4 flex justify-center items-center text-black hover:bg-yellow-400"
-                        [class]="formPage === 1 ? 'w-full' : 'w-auto'"
-                        (click)="formPage === 3 ? changePage(false) : changePage(true)">
-                        <p class="mr-2">{{formPage ===3 ? 'Validar pago' : 'Continuar'}}</p>
-                        <i class="fa-solid" [class]="formPage === 3 ? 'fa-check': 'fa-chevron-right'"></i>
+                <div class="flex w-full" *ngIf="numberCartItems > 0 && formPage == 1">
+                    <button class="bg-yellow-500 rounded-md py-2.5 px-4 flex justify-center items-center text-black hover:bg-yellow-400 w-full"
+                        (click)="changePage(true)">
+                        <p class="mr-2">Continuar</p>
+                        <i class="fa-solid fa-chevron-right"></i>
                     </button>
                 </div>
             </div>

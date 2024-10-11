@@ -35,6 +35,10 @@ export class CartService {
     console.log(this._productsToBuy);
   }
 
+  public clearCart(): void {
+    this._productsToBuy = []
+  }
+
   public deleteProduct(item: CartItem): void {
     const index = this._productsToBuy.indexOf(item);
     this._productsToBuy.splice(index, 1);
