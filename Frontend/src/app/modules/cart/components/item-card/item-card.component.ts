@@ -15,23 +15,30 @@ export class ItemCardComponent {
 
   constructor(
     private readonly _cartService: CartService
-  ){}
+  ) { }
 
   public edit: boolean = false;
 
   public showEditInput(): void {
     this.edit = true;
   }
-  
+
   public editQuantity(): void {
-    const newNumber =  parseInt(this.txtQuantity.nativeElement.value);
+    const newNumber = this.txtQuantity.nativeElement.valueAsNumber;
+    if (newNumber == 0) {
+      setTimeout(() => {
+        this.txtQuantity.nativeElement.valueAsNumber = this.item.quantity;
+      }, 1000);
+
+      return;
+    }
     this._cartService.updateQuantity(this.item, newNumber);
     setTimeout(() => {
       this.edit = false;
     }, 1000);
   }
 
-  public deleteItem(): void { 
+  public deleteItem(): void {
     this._cartService.deleteProduct(this.item);
   }
 }
