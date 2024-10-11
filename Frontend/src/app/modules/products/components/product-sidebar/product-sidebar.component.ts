@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { SidebarService } from '../../../../core/services/sidebar/sidebar.service';
+import { Product } from '../../../../core/interfaces/product.interface';
+import { CartService } from '../../../../core/services/cart/cart.service';
 
 @Component({
   selector: 'product-sidebar',
@@ -7,8 +9,13 @@ import { SidebarService } from '../../../../core/services/sidebar/sidebar.servic
   styles: ``
 })
 export class ProductSidebarComponent {
+  @Input() public product!: Product;
+
+  public qtyProduct: number = 1;
+
   constructor(
-    private readonly _sidebarService: SidebarService
+    private readonly _sidebarService: SidebarService,
+    private readonly _cartService: CartService
   ){}
 
   public get isOpen(): boolean {
@@ -18,4 +25,24 @@ export class ProductSidebarComponent {
   public closeSidebar(): void {
     this._sidebarService.closeSidebar();
   }
+
+  public updateQtyProduct(add: boolean): void {
+    if(!add){
+      if(this.qtyProduct === 1) return;
+      this.qtyProduct --;
+      return;
+    }
+    this.qtyProduct++;
+  }
+
+  public addProduct(): void {
+    const newItem = {
+      product: this.product,
+      quantity: this.qtyProduct
+    };
+
+    this._cartService.addProduct(newItem);
+    this.closeSidebar();
+  }
+
 }

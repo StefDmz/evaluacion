@@ -8,13 +8,13 @@ import { Category } from '../../interfaces/category.interface';
   providedIn: 'root'
 })
 export class CategoriesService {
-  private baseUrl: string = environment.baseUrl;
+  private _baseUrl: string = environment.baseUrl;
 
   constructor(
     private http: HttpClient
   ) { }
 
   public getCategories(): Observable<Category[]>{
-    return this.http.get<Category[]>(`${ this.baseUrl }/categories`);
+    return this.http.get<Category[]>(`${ this._baseUrl }/categories`);
   }
 }
