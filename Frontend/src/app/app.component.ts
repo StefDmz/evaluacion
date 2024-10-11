@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { SidebarService } from './core/services/sidebar/sidebar.service';
 import { SidebarType } from './core/types/sidebarType';
+import { ModalService } from './core/services/modal/modal.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,8 @@ import { SidebarType } from './core/types/sidebarType';
 })
 export class AppComponent {
   constructor(
-    private readonly _sidebarService: SidebarService
+    private readonly _sidebarService: SidebarService,
+    private readonly _modalService: ModalService
   ){}
 
   public get sidebarType(): SidebarType {
@@ -18,5 +20,13 @@ export class AppComponent {
 
   public openSidebar(sidebarType: SidebarType): void {
     this._sidebarService.openSidebar(sidebarType);
+  }
+
+  public get isModalOpen(): boolean {
+    return this._modalService.isOpen;
+  }
+
+  public openModal(): void {
+    this._modalService.openModal();
   }
 }
