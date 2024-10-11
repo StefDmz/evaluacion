@@ -1,12 +1,14 @@
+<product-sidebar *ngIf="sidebarType == 'Product' "></product-sidebar>
+
 <h2 class="text-3xl text-red-800 font-bold drop-shadow-lg text-center uppercase">Pastes Salados</h2>
 
 <hr class="border border-green-700 my-8" />
 
 <div class="grid grid-cols-1 w-full sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5">
-    <product-card></product-card>
-    <product-card></product-card>
-    <product-card></product-card>
-    <product-card></product-card>
-    <product-card></product-card>
-    <product-card></product-card>
+    <product-card (onAddProduct)="openSidebar('Product')"></product-card>
+    <product-card (onAddProduct)="openSidebar('Product')"></product-card>
+    <product-card (onAddProduct)="openSidebar('Product')"></product-card>
+    <product-card (onAddProduct)="openSidebar('Product')"></product-card>
+    <product-card (onAddProduct)="openSidebar('Product')"></product-card>
+    <product-card (onAddProduct)="openSidebar('Product')"></product-card>
 </div>
