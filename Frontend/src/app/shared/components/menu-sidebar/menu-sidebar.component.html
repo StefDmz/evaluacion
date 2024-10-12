@@ -15,13 +15,12 @@
                     <p class="ml-3">Menú</p>
                 </div>
                 <div class="flex flex-col justify-center text-lg font-medium">
-                    <button class="flex justify-center items-center py-1.5 rounded-lg hover:bg-yellow-500 hover:text-white"
+                    <a class="flex justify-center items-center py-1.5 rounded-lg hover:bg-yellow-500 hover:text-white"
                     *ngFor="let item of categories"
-                    (click)="selectCategory(item)"
-                    [class]="categorySelected === item ? 'bg-yellow-500 text-white' : ''">
+                    [href]="'#' + item.name">
                     <i [class]="'fa-solid ' + item.icon"></i>
                     <p class="ml-3">{{item.name}}</p>
-                    </button>
+                </a>
                 </div>
             </div>
         </div>

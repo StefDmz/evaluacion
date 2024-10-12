@@ -5,6 +5,7 @@ import { ModalService } from './core/services/modal/modal.service';
 import { Category } from './core/interfaces/category.interface';
 import { ScheduleService } from './core/services/schedule/schedule.service';
 import { Schedule } from './core/interfaces/schedule.interface';
+import { CategoriesService } from './core/services/categories/categories.service';
 
 @Component({
   selector: 'app-root',
@@ -12,17 +13,20 @@ import { Schedule } from './core/interfaces/schedule.interface';
   styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit {
-  public categorySelected?: Category;
   public isRestaurantOpen: boolean = true;
   public schedules: Schedule[] = [];
+  public categories: Category[] = [];
 
   constructor(
     private readonly _sidebarService: SidebarService,
     private readonly _modalService: ModalService,
-    private readonly _scheduleService: ScheduleService
+    private readonly _scheduleService: ScheduleService,
+    private readonly _categoriesService: CategoriesService
   ) { }
 
   ngOnInit(): void {
+    this._categoriesService.getCategories()
+      .subscribe(items => this.categories = items);
     this.checkRestaurantSchedule();
   }
 
@@ -40,10 +44,6 @@ export class AppComponent implements OnInit {
 
   public openSchedule(): void {
     this._modalService.openModal();
-  }
-
-  public categorySelect(category: Category): void {
-    this.categorySelected = category;
   }
 
   public checkRestaurantSchedule(): void {

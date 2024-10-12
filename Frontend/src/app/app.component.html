@@ -2,14 +2,16 @@
   <shared-menu-sidebar 
     (onShowCart)="openSidebar('Cart')"
     (onShowSchedule)="openSchedule()"
-    (onCategorySelect)="categorySelect($event)">
+    [categories]="categories">
   </shared-menu-sidebar>
   
   <div class="flex-1 overflow-y-auto p-6">
     <app-cart *ngIf="sidebarType == 'Cart'"></app-cart>
     
-    
-    <app-products [categorySelected]="categorySelected"></app-products>
+    <!-- <app-products [categorySelected]="categorySelected"></app-products> -->
+     <app-products
+      [categories]="categories"
+     ></app-products>
   </div>
 </div>
 

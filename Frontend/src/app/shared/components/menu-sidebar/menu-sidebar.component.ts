@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Category } from '../../../core/interfaces/category.interface';
 import { CategoriesService } from '../../../core/services/categories/categories.service';
 import { CartService } from '../../../core/services/cart/cart.service';
@@ -8,23 +8,15 @@ import { CartService } from '../../../core/services/cart/cart.service';
   templateUrl: './menu-sidebar.component.html',
   styles: ``
 })
-export class MenuSidebarComponent implements OnInit {
+export class MenuSidebarComponent {
   @Output() public onShowCart: EventEmitter<void> = new EventEmitter();
   @Output() public onShowSchedule: EventEmitter<void> = new EventEmitter();
-  @Output() public onCategorySelect: EventEmitter<Category> = new EventEmitter();
 
-  public categories: Category[] = [];
-  public categorySelected?: Category;
+  @Input() public categories: Category[] = [];
 
   constructor(
-    private readonly _categoriesService: CategoriesService,
     private readonly _cartService: CartService
   ){}
-
-  ngOnInit(): void {
-    this._categoriesService.getCategories()
-      .subscribe(items => this.categories = items);
-  }
 
   public get numberCartItems(): number {
     return this._cartService.numberProducts;
@@ -40,10 +32,5 @@ export class MenuSidebarComponent implements OnInit {
 
   public showSchedule(): void {
     this.onShowSchedule.emit();
-  }
-
-  public selectCategory(category: Category): void {
-    this.categorySelected = category;
-    this.onCategorySelect.emit(category);
   }
 }
