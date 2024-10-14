@@ -9,9 +9,9 @@ import { Product } from '../../../../core/interfaces/product.interface';
 export class ProductCardComponent {
   @Input() public product!: Product;
 
-  @Output() public onOpenSidebar: EventEmitter<Product> = new EventEmitter();
+  @Output() public onSelectedProduct: EventEmitter<Product> = new EventEmitter();
 
-  public openSidebar(): void {
-    this.onOpenSidebar.emit(this.product);
+  public selectedProduct(): void {
+    this.onSelectedProduct.emit(this.product);
   }
 }

@@ -20,18 +20,17 @@
         </button>
     </div>
 </div>
-    <div class="grid grid-cols-5 gap-x-1 my-3 animate__animated" *ngIf="edit"
+    <div class="grid grid-cols-5 my-3 animate__animated" *ngIf="edit"
         [class]="edit ? 'animate__fadeIn' : 'animate__fadeOut'">
-        <div *ngIf="txtQuantity.valueAsNumber == 0" class="col-span-5 text-sm text-red-800 italic">
-            *Se debe ingresar un número mayor a 0.
-        </div>
-        <input type="number" class="col-span-4 rounded-md py-1.5 px-2 border-2 border-yellow-200 bg-gray-50 focus:border-2 focus:border-yellow-500 focus:ring-0 focus:outline-none" 
-            #txtQuantity
-            [value]="item.quantity" 
-            (keyup.enter)="editQuantity()"/>
+        <shared-quantity-buttons
+            class="col-span-4"
+            [quantity]="item.quantity"
+            [smallSize]="true"
+            (onQtyChange)="newNumber = $event">
+        </shared-quantity-buttons>
         <button class="py-2 border border-yellow-500 text-yellow-500 hover:text-white hover:bg-yellow-500 rounded-md"
             (click)="editQuantity()">
-            Editar
+            Aceptar
         </button>
     </div>
     

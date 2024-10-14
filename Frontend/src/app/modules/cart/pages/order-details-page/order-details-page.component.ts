@@ -14,6 +14,9 @@ export class OrderDetailsPageComponent {
   @Output() onChangePage: EventEmitter<boolean> = new EventEmitter();
   @Output() onFinishOrder: EventEmitter<Order> = new EventEmitter();
 
+  public tipSelected: number = 0;
+  public tipArray: number[] = [0, 10, 20, 30, 40, 50];
+
   public form: FormGroup = new FormGroup({
     paymentMethod: new FormControl(),
     comentaries: new FormControl()
@@ -27,6 +30,10 @@ export class OrderDetailsPageComponent {
     return this._cartService.subtotal;
   }
 
+  public selectTip(tip: number): void { 
+    this.tipSelected = tip;
+  }
+
   public changePage(nextPage: boolean){
     if(nextPage){
       if(this.form.invalid){
@@ -34,7 +41,7 @@ export class OrderDetailsPageComponent {
       }
       this.order.paymentMethod = this.form.get('paymentMethod')?.value;
       this.order.comentaries = this.form.get('comentaries')?.value;
-      this.order.tips = 0;
+      this.order.tips = this.tipSelected;
       this.order.discountId = '';
       this.order.orderDate = new Date();
       this.onFinishOrder.emit(this.order);

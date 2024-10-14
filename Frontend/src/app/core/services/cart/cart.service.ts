@@ -17,7 +17,9 @@ export class CartService {
   }
 
   public get numberProducts(): number {
-    return this._productsToBuy.length;
+    let totalItems = 0;
+    this._productsToBuy.forEach(x => totalItems += x.quantity);
+    return totalItems;
   }
 
   public get subtotal(): number {

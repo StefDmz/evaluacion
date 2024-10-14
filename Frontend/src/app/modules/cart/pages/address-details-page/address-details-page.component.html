@@ -5,28 +5,42 @@
         <h4 class="text-center font-semibold text-lg">Datos personales</h4>
 
         <div class="flex flex-col gap-y-0.5">
-            <label>Nombre:</label>
+            <label>Nombre completo<span class="text-red-600 font-semibold">*</span>:</label>
+
             <input type="text" class="rounded-md py-1.5 px-2 border-2 border-yellow-200 bg-gray-50 focus:border-2 focus:border-yellow-500 focus:ring-0 focus:outline-none" 
-                formControlName="clientName" required />
+                formControlName="clientName" maxlength="100" placeholder="Nombre completo" required />
+
+            <small *ngIf="form.controls['clientName'].touched && form.controls['clientName'].errors?.['required']" 
+                class="text-sm text-red-500 italic">
+                *Es necesario llenar este campo
+            </small>
         </div>
 
         <div class="flex flex-col gap-y-0.5">
-            <label>Celular:</label>
-            <input type="text" class="rounded-md py-1.5 px-2 border-2 border-yellow-200 bg-gray-50 focus:border-2 focus:border-yellow-500 focus:ring-0 focus:outline-none" 
-                formControlName="clientTelephone" required />
+            <label>Celular<span class="text-red-600 font-semibold">*</span>:</label>
+
+            <input type="number" class="rounded-md py-1.5 px-2 border-2 border-yellow-200 bg-gray-50 focus:border-2 focus:border-yellow-500 focus:ring-0 focus:outline-none" 
+                formControlName="clientTelephone" maxlength="10" placeholder="Celular de 10 dígitos" required/>
+
+            <small *ngIf="form.controls['clientTelephone'].touched && (form.controls['clientTelephone'].errors?.['required'] || form.controls['clientTelephone'].errors?.['pattern'])" 
+                class="text-sm text-red-500 italic">
+                *Es necesario llenar este campo, solo puede contener números y debe tener 10 dígitos
+            </small>
         </div>
     </div>
 
     <div class="flex flex-col mt-4 p-4 bg-yellow-50 rounded-md gap-y-3">
-        <h4 class="text-center font-semibold text-lg">Tipo de entrega</h4>
+        <h4 class="text-center font-semibold text-lg">Tipo de entrega<span class="text-red-600 font-semibold">*</span></h4>
         <div class="flex justify-between items-center">
             <label>Envio a domicilio:</label>
+            
             <input type="radio" class="h-5 w-5" name="deliveryType" value="domicilio" 
                 formControlName="deliveryType" />
-        </div>
+        </div> 
         <div class="flex justify-between items-center">
             <label>Pasar a recoger:</label>
-            <input type="radio" class="h-5 w-5 checked:border-yellow-200" name="deliveryType" value="recoger" 
+
+            <input type="radio" class="h-5 w-5" name="deliveryType" value="recoger" 
                 formControlName="deliveryType" />
         </div>
     </div>
@@ -37,35 +51,39 @@
         <p class="text-yellow-400 text-center -mt-4 font-semibold">Costo de envío: $0.00</p>
 
         <div class="flex flex-col gap-y-0.5">
-            <label>Zona, colonia o super manzana:</label>
+            <label>Zona, colonia o super manzana<span class="text-red-600 font-semibold">*</span>:</label>
+
             <input type="text" class="rounded-md py-1.5 px-2 border-2 border-yellow-200 bg-gray-50 focus:border-2 focus:border-yellow-500 focus:ring-0 focus:outline-none"
-                formControlName="neighborhood" required />
+                formControlName="neighborhood" placeholder="Zona, colonia o super manzana" maxlength="100" required />
         </div>
 
         <div class="flex flex-col gap-y-0.5">
-            <label>Calle o mz:</label>
+            <label>Calle o mz<span class="text-red-600 font-semibold">*</span>:</label>
+
             <input type="text" class="rounded-md py-1.5 px-2 border-2 border-yellow-200 bg-gray-50 focus:border-2 focus:border-yellow-500 focus:ring-0 focus:outline-none"
-                formControlName="street" required />
+                formControlName="street" placeholder="Nombre de la calle" maxlength="100" required />
         </div>
 
         <div class="grid grid-cols-2 justify-between gap-x-2">
             <div class="flex flex-col gap-y-0.5">
-                <label>Número exterior:</label>
+                <label>Número exterior<span class="text-red-600 font-semibold">*</span>:</label>
+
                 <input type="text" class="rounded-md py-1.5 px-2 border-2 border-yellow-200 bg-gray-50 focus:border-2 focus:border-yellow-500 focus:ring-0 focus:outline-none" 
-                    formControlName="exteriorNumber" required />
+                    formControlName="exteriorNumber" placeholder="000" maxlength="8" required />
             </div>
 
             <div class="flex flex-col gap-y-0.5">
                 <label>Número interior:</label>
+
                 <input type="text" class="rounded-md py-1.5 px-2 border-2 border-yellow-200 bg-gray-50 focus:border-2 focus:border-yellow-500 focus:ring-0 focus:outline-none" 
-                    formControlName="interiorNumber" required />
+                    formControlName="interiorNumber" placeholder="000" maxlength="8" />
             </div>
         </div>
 
         <div class="flex flex-col gap-y-0.5">
             <label>Referencias:</label>
             <textarea type="text" class="rounded-md py-1.5 h-16 px-2 border-2 border-yellow-200 bg-gray-50 focus:border-2 focus:border-yellow-500 focus:ring-0 focus:outline-none"
-                formControlName="references">
+                formControlName="references" maxlength="250">
             </textarea>
         </div>
     </div>

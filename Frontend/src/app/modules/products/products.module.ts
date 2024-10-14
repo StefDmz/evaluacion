@@ -4,6 +4,8 @@ import { ProductsComponent } from './products.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { ProductSidebarComponent } from './components/product-sidebar/product-sidebar.component';
 import { ImagePipePipe } from './pipes/imagePipe/image-pipe.pipe';
+import { LayoutComponent } from './components/layout/layout.component';
+import { SharedModule } from '../../shared/shared.module';
 
 
 
@@ -13,12 +15,14 @@ import { ImagePipePipe } from './pipes/imagePipe/image-pipe.pipe';
     ProductsComponent,
     ProductCardComponent,
     ProductSidebarComponent,
+    LayoutComponent,
 
     //pipes
-    ImagePipePipe
+    ImagePipePipe,
   ],
   imports: [
     CommonModule,
+    SharedModule
   ],
   exports: [
     ProductsComponent

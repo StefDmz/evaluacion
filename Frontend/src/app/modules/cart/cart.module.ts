@@ -6,6 +6,7 @@ import { OrderDetailsPageComponent } from './pages/order-details-page/order-deta
 import { AddressDetailsPageComponent } from './pages/address-details-page/address-details-page.component';
 import { ItemCardComponent } from './components/item-card/item-card.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from '../../shared/shared.module';
 
 
 
@@ -19,7 +20,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   ],
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ], 
   exports: [
     CartComponent

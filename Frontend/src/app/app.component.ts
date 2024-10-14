@@ -5,6 +5,7 @@ import { ModalService } from './core/services/modal/modal.service';
 import { Category } from './core/interfaces/category.interface';
 import { ScheduleService } from './core/services/schedule/schedule.service';
 import { Schedule } from './core/interfaces/schedule.interface';
+import { CategoriesService } from './core/services/categories/categories.service';
 
 @Component({
   selector: 'app-root',
@@ -12,18 +13,26 @@ import { Schedule } from './core/interfaces/schedule.interface';
   styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit {
-  public categorySelected?: Category;
   public isRestaurantOpen: boolean = true;
   public schedules: Schedule[] = [];
+  public categories: Category[] = [];
 
   constructor(
     private readonly _sidebarService: SidebarService,
     private readonly _modalService: ModalService,
-    private readonly _scheduleService: ScheduleService
+    private readonly _scheduleService: ScheduleService,
+    private readonly _categoriesService: CategoriesService
   ) { }
 
   ngOnInit(): void {
-    this.checkRestaurantSchedule();
+    this._categoriesService.getCategories()
+      .subscribe(items => this.categories = items);
+
+    this._scheduleService.getSchedules()
+      .subscribe(items => {
+        this.schedules = items;
+        this.checkRestaurantSchedule();
+      });
   }
 
   public get sidebarType(): SidebarType {
@@ -42,18 +51,11 @@ export class AppComponent implements OnInit {
     this._modalService.openModal();
   }
 
-  public categorySelect(category: Category): void {
-    this.categorySelected = category;
-  }
-
   public checkRestaurantSchedule(): void {
     const currentDate = new Date();
     const currentWeekDay = currentDate.getDay();
     const currentHour = currentDate.getHours();
     const currentMinutes = currentDate.getMinutes();
-
-    this._scheduleService.getSchedules()
-      .subscribe(items => this.schedules = items);
 
     const schedule = this.schedules.find(x => x.weekDayId == currentWeekDay);
 

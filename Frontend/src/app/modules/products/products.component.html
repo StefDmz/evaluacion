@@ -1,11 +1,9 @@
 <product-sidebar *ngIf="sidebarType == 'Product'" [product]="productSelected"></product-sidebar>
 
-<h2 class="text-3xl text-red-800 font-bold drop-shadow-lg text-center uppercase">{{ categorySelected? categorySelected.name : 'Menú completo' }}</h2>
-
-<hr class="border border-green-700 my-8" />
-
-<div class="grid grid-cols-1 w-full sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5">
-    <product-card *ngFor="let item of products" [product]="item" 
-        (onOpenSidebar)="openSidebar('Product', $event)">
-    </product-card>
+<div class="flex flex-col gap-y-10">
+<products-layout 
+    *ngFor="let item of categories" 
+    [category]="item"
+    (onOpenSidebar)="openSidebar($event)">
+</products-layout>
 </div>
