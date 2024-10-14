@@ -5,6 +5,7 @@ import { ProductCardComponent } from './components/product-card/product-card.com
 import { ProductSidebarComponent } from './components/product-sidebar/product-sidebar.component';
 import { ImagePipePipe } from './pipes/imagePipe/image-pipe.pipe';
 import { LayoutComponent } from './components/layout/layout.component';
+import { SharedModule } from '../../shared/shared.module';
 
 
 
@@ -21,6 +22,7 @@ import { LayoutComponent } from './components/layout/layout.component';
   ],
   imports: [
     CommonModule,
+    SharedModule
   ],
   exports: [
     ProductsComponent

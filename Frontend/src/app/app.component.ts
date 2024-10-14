@@ -27,7 +27,12 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this._categoriesService.getCategories()
       .subscribe(items => this.categories = items);
-    this.checkRestaurantSchedule();
+
+    this._scheduleService.getSchedules()
+      .subscribe(items => {
+        this.schedules = items;
+        this.checkRestaurantSchedule();
+      });
   }
 
   public get sidebarType(): SidebarType {
@@ -51,9 +56,6 @@ export class AppComponent implements OnInit {
     const currentWeekDay = currentDate.getDay();
     const currentHour = currentDate.getHours();
     const currentMinutes = currentDate.getMinutes();
-
-    this._scheduleService.getSchedules()
-      .subscribe(items => this.schedules = items);
 
     const schedule = this.schedules.find(x => x.weekDayId == currentWeekDay);
 

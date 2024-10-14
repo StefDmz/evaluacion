@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Order } from '../../../../core/interfaces/order.interface';
 
 @Component({
@@ -12,9 +12,9 @@ export class AddressDetailsPageComponent implements OnInit {
   @Output() onContinueForm: EventEmitter<Order> = new EventEmitter();
 
   public form: FormGroup = new FormGroup({
-    clientName: new FormControl(),
-    clientTelephone: new FormControl(),
-    deliveryType: new FormControl(),
+    clientName: new FormControl('', [Validators.required, Validators.maxLength(100)]),
+    clientTelephone: new FormControl('', [Validators.required, Validators.pattern('^[0-9]{10}$')]),
+    deliveryType: new FormControl('recoger'),
     neighborhood: new FormControl(),
     street: new FormControl(),
     exteriorNumber: new FormControl(),

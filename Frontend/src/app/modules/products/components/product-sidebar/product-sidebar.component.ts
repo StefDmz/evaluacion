@@ -10,7 +10,6 @@ import { CartService } from '../../../../core/services/cart/cart.service';
 })
 export class ProductSidebarComponent {
   @Input() public product!: Product;
-
   public qtyProduct: number = 1;
 
   constructor(
@@ -24,15 +23,6 @@ export class ProductSidebarComponent {
 
   public closeSidebar(): void {
     this._sidebarService.closeSidebar();
-  }
-
-  public updateQtyProduct(add: boolean): void {
-    if(!add){
-      if(this.qtyProduct === 1) return;
-      this.qtyProduct --;
-      return;
-    }
-    this.qtyProduct++;
   }
 
   public addProduct(): void {

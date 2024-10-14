@@ -8,13 +8,13 @@ import { Schedule } from '../../interfaces/schedule.interface';
   providedIn: 'root'
 })
 export class ScheduleService {
-  private baseUrl: string = environment.baseUrl;
+  private _baseUrl: string = environment.baseUrl;
 
   constructor(
     private http: HttpClient
   ) { }
 
   public getSchedules(): Observable<Schedule[]> {
-    return this.http.get<Schedule[]>(`${ this.baseUrl }/schedules`);
+    return this.http.get<Schedule[]>(`${ this._baseUrl }/schedules`);
   }
 }

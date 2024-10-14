@@ -11,31 +11,20 @@ export class ItemCardComponent {
   @Input() public item!: CartItem;
   @Input() public isLast!: boolean;
 
-  @ViewChild('txtQuantity') txtQuantity!: ElementRef<HTMLInputElement>;
+  public newNumber: number = 1;
+  public edit: boolean = false;
 
   constructor(
     private readonly _cartService: CartService
   ) { }
-
-  public edit: boolean = false;
 
   public showEditInput(): void {
     this.edit = true;
   }
 
   public editQuantity(): void {
-    const newNumber = this.txtQuantity.nativeElement.valueAsNumber;
-    if (newNumber == 0) {
-      setTimeout(() => {
-        this.txtQuantity.nativeElement.valueAsNumber = this.item.quantity;
-      }, 1000);
-
-      return;
-    }
-    this._cartService.updateQuantity(this.item, newNumber);
-    setTimeout(() => {
-      this.edit = false;
-    }, 1000);
+    this._cartService.updateQuantity(this.item, this.newNumber);
+    this.edit = false;
   }
 
   public deleteItem(): void {
