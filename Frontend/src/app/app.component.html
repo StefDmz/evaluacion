@@ -1,4 +1,4 @@
-<div class="flex h-screen bg-yellow-400" *ngIf="isRestaurantOpen; else noService">
+<div class="flex h-screen bg-yellow-400" *ngIf="!isRestaurantOpen; else noService">
   <shared-menu-sidebar 
     (onShowCart)="openSidebar('Cart')"
     (onShowSchedule)="openSchedule()"
@@ -8,7 +8,6 @@
   <div class="flex-1 overflow-y-auto p-6">
     <app-cart *ngIf="sidebarType == 'Cart'"></app-cart>
     
-    <!-- <app-products [categorySelected]="categorySelected"></app-products> -->
      <app-products
       [categories]="categories"
      ></app-products>
