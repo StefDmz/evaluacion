@@ -1,4 +1,4 @@
-<div class="flex h-screen bg-yellow-400" *ngIf="!isRestaurantOpen; else noService">
+<div class="flex h-screen bg-yellow-400" *ngIf="isRestaurantOpen; else noService">
   <shared-menu-sidebar 
     (onShowCart)="openSidebar('Cart')"
     (onShowSchedule)="openSchedule()"
