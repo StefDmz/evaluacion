@@ -14,11 +14,11 @@ export class ProductsService {
     private http: HttpClient
   ) { }
 
-  public getProducts(category?: string): Observable<Product[]> {
+  public getProducts(category?: number): Observable<Product[]> {
     let url = `${ this.baseUrl }/products`;
 
     if(category){
-      url += `/category/${category}`;
+      url += `?categoryId=${category}`;
     }
 
     return this.http.get<Product[]>(url);

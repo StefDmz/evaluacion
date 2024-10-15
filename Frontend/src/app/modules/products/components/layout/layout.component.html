@@ -5,7 +5,7 @@
 
 <hr class="border border-green-700 my-8" />
 
-<div class="grid grid-cols-1 w-full sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5 h-auto">
+<div class="grid grid-cols-1 w-full sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-2.5 h-auto">
     <product-card *ngFor="let item of products" [product]="item" (onSelectedProduct)="openSidebar($event)">
     </product-card>
 </div>
