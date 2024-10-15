@@ -1,5 +1,5 @@
 export interface Product {
-    id: string;
+    id: number;
     image: string;
     price: number;
     name: string;
@@ -8,5 +8,4 @@ export interface Product {
     description: string;
     stock: number;
     sku: string;
-    categoryName: string;
 }

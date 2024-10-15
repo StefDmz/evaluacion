@@ -42,7 +42,7 @@ export class CartService {
     console.log(this._productsToBuy);
   }
 
-  public purchase(orderId: string): void {
+  public purchase(orderId: number): void {
     this._orderDetailsService.addOrderDetail(this._productsToBuy, orderId);
     this._productsToBuy = [];
   }
