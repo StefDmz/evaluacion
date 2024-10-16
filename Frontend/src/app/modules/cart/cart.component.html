@@ -5,7 +5,8 @@
         <div class="w-full relative">
             <div class="flex flex-col justify-between p-6 break-words h-full overflow-y-auto">
                 <div class="flex flex-col">
-                    <div class="flex justify-between items-center text-yellow-500">
+                    <div class="flex justify-between items-center text-yellow-500"
+                        *ngIf="formPage != 4">
                         <h3 class="text-2xl font-semibold"><i class="fa-solid fa-cart-shopping"></i></h3>
 
                         <button class="text-3xl" (click)="closeSidebar()">
@@ -26,16 +27,23 @@
                             *ngIf="formPage === 3"
                             [order]="order"
                             (onChangePage)="changePage($event)"
-                            (onFinishOrder)="finishOrder($event)">
+                            (onFinishOrder)="finishOrder()">
                         </cart-order-details-page>
+
+                        <div class="flex flex-col justify-center items-center h-full"
+                            *ngIf="formPage === 4">
+                            <p class="text-4xl text-green-600 font-bold"><i class="fa-brands fa-whatsapp"></i></p>
+                            <h2 class="text-2xl text-green-600 font-semibold">Pedido realizado correctamente</h2>
+                            <p class="mt-10 text-center text-green-600 italic">En breve la empresa se contactará con usted por whatsapp</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="flex w-full" *ngIf="numberCartItems > 0 && formPage == 1">
+                <div class="flex w-full" *ngIf="(numberCartItems > 0 && formPage == 1) || formPage == 4">
                     <button class="bg-yellow-500 rounded-md py-2.5 px-4 flex justify-center items-center text-black hover:bg-yellow-400 w-full"
-                        (click)="changePage(true)">
-                        <p class="mr-2">Continuar</p>
-                        <i class="fa-solid fa-chevron-right"></i>
+                        (click)="formPage != 4 ? changePage(true) : closeSidebar()">
+                        <p class="mr-2">{{ formPage != 4 ? 'Continuar': 'Cerrar' }}</p>
+                        <i class="fa-solid " [class]="formPage != 4? 'fa-chevron-right' : 'fa-xmark'"></i>
                     </button>
                 </div>
             </div>

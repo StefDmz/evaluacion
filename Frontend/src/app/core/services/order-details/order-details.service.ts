@@ -28,7 +28,7 @@ export class OrderDetailsService {
     });
   }
 
-  public insertOrderDetail(orderDetail: OrderDetail): Observable<string> {
+  private insertOrderDetail(orderDetail: OrderDetail): Observable<string> {
     return this.http.post<string>(`${ this._baseUrl }/order-details`, orderDetail);
   }
 }

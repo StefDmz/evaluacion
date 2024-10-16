@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CartService } from '../../../../core/services/cart/cart.service';
 import { Order } from '../../../../core/interfaces/order.interface';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'cart-order-details-page',
@@ -12,13 +12,14 @@ export class OrderDetailsPageComponent {
   @Input() public order!: Order;
   
   @Output() onChangePage: EventEmitter<boolean> = new EventEmitter();
-  @Output() onFinishOrder: EventEmitter<Order> = new EventEmitter();
+  @Output() onFinishOrder: EventEmitter<void> = new EventEmitter();
 
   public tipSelected: number = 0;
   public tipArray: number[] = [0, 10, 20, 30, 40, 50];
 
   public form: FormGroup = new FormGroup({
-    paymentMethod: new FormControl(),
+    paymentMethod: new FormControl('', [Validators.required]),
+    paidWith: new FormControl(),
     comentaries: new FormControl()
   });
 
@@ -44,7 +45,12 @@ export class OrderDetailsPageComponent {
       this.order.tips = this.tipSelected;
       this.order.discountId = '';
       this.order.orderDate = new Date();
-      this.onFinishOrder.emit(this.order);
+
+      if(this.order.paymentMethod == 'efectivo'){
+        this.order.paidWith = this.form.get('paidWith')?.value;
+      }
+
+      this.onFinishOrder.emit();
     }
     this.onChangePage.emit(nextPage);
   }

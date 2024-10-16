@@ -9,6 +9,7 @@ export interface Order {
     interiorNumber: string;
     references: string;
     paymentMethod: string;
+    paidWith?: number;
     comentaries: string;
     orderDate: Date;
     tips: number;
