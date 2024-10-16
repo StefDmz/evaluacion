@@ -12,7 +12,7 @@ export class OrderDetailsService {
   private _baseUrl: string = environment.baseUrl;
 
   constructor(
-    private readonly http: HttpClient
+    private http: HttpClient
   ) { }
 
   public addOrderDetail(products: CartItem[], orderId: number): void {

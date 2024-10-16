@@ -10,7 +10,7 @@ import { environment } from '../../../../environments/environment';
 export class OrdersService {
   private _baseUrl: string = environment.baseUrl;
   constructor(
-    private readonly http: HttpClient
+    private http: HttpClient
   ) { }
 
   public addOrder(order: Order): Observable<Order> {

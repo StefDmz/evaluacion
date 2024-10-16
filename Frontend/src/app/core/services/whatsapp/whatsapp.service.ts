@@ -2,14 +2,17 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Order } from '../../interfaces/order.interface';
 import { CartService } from '../cart/cart.service';
+import { Token } from '../../../../environments/whatsappToken';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WhatsappService {
+  private token: string = Token.wppToken;
+
   constructor(
     private http: HttpClient,
-    private _cartService: CartService
+    private readonly _cartService: CartService
   ) { }
 
   public sendMessage(order: Order): void {
@@ -55,7 +58,7 @@ export class WhatsappService {
     this.http.post('https://graph.facebook.com/v20.0/464393396754661/messages', body, {
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer EAASiix4x7xoBOzDppUtAlUtBdK32ZCirNAZBKxueZA2AJaSyN0i7SqKjNjb5s3sMwRPZBqWdZCXaXlxbTKLmsOcrgZC3v620FkSFqpO3gxOS5XftgZBGvOVxkimi5Xs2c89nYT2KmntIXVzQZCYUaYbbGUGUbrh2EoZBwQV88ixci0fZBsnk45ViZCwqZCEjvtLzWt2iSqXtKwnvjyEr5NCILkZB0ByqxtFibsvyOUxS9mwcZD'
+        'Authorization': `Bearer ${ this.token }`
       }
     }).subscribe();
   }
