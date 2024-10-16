@@ -58,7 +58,9 @@
         <input type="number" class="rounded-md w-full py-1.5 px-2 border-2 border-yellow-200 bg-gray-50 focus:border-2 focus:border-yellow-500 focus:ring-0 focus:outline-none" 
             placeholder="¿Con cuánto pagas?"
             *ngIf="form.get('paymentMethod')?.value === 'efectivo'" 
-            [value]="cartSubtotal + tipSelected" />
+            [value]="cartSubtotal + tipSelected" 
+            formControlName="paidWith"
+            min="{{ cartSubtotal + tipSelected }} "/>
 
         <div class="flex justify-between items-center">
             <label>Transferencia:</label>

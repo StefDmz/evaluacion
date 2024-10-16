@@ -39,7 +39,6 @@ export class CartService {
       return;
     }
     this.productsToBuy.push(item);
-    console.log(this._productsToBuy);
   }
 
   public purchase(orderId: number): void {
@@ -50,6 +49,10 @@ export class CartService {
   public deleteProduct(item: CartItem): void {
     const index = this._productsToBuy.indexOf(item);
     this._productsToBuy.splice(index, 1);
+  }
+
+  public deleteAllItems(): void {
+    this._productsToBuy = [];
   }
 
   public updateQuantity(item: CartItem, newQuantity: number): void {

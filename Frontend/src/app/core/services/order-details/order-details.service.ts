@@ -12,7 +12,7 @@ export class OrderDetailsService {
   private _baseUrl: string = environment.baseUrl;
 
   constructor(
-    private readonly http: HttpClient
+    private http: HttpClient
   ) { }
 
   public addOrderDetail(products: CartItem[], orderId: number): void {
@@ -28,7 +28,7 @@ export class OrderDetailsService {
     });
   }
 
-  public insertOrderDetail(orderDetail: OrderDetail): Observable<string> {
+  private insertOrderDetail(orderDetail: OrderDetail): Observable<string> {
     return this.http.post<string>(`${ this._baseUrl }/order-details`, orderDetail);
   }
 }
