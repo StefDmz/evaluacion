@@ -55,12 +55,16 @@
                 formControlName="paymentMethod" />
         </div>
 
-        <input type="number" class="rounded-md w-full py-1.5 px-2 border-2 border-yellow-200 bg-gray-50 focus:border-2 focus:border-yellow-500 focus:ring-0 focus:outline-none" 
+        <div *ngIf="form.get('paymentMethod')?.value === 'efectivo'" >
+            <input type="number" class="rounded-md w-full py-1.5 px-2 border-2 border-yellow-200 bg-gray-50 focus:border-2 focus:border-yellow-500 focus:ring-0 focus:outline-none" 
             placeholder="¿Con cuánto pagas?"
-            *ngIf="form.get('paymentMethod')?.value === 'efectivo'" 
-            [value]="cartSubtotal + tipSelected" 
-            formControlName="paidWith"
-            min="{{ cartSubtotal + tipSelected }} "/>
+            formControlName="paidWith"/>
+
+            <small *ngIf="form.controls['paidWith'].errors?.['required'] || form.controls['paidWith'].errors?.['min'] || form.controls['paidWith'].errors?.['pattern']" 
+                class="text-sm text-red-500 italic">
+                *Debe de ser un número <span class="font-semibold">no</span> menor al total
+            </small>
+        </div>
 
         <div class="flex justify-between items-center">
             <label>Transferencia:</label>
@@ -84,8 +88,9 @@
 
         <div class="flex flex-col gap-y-0.5">
             <label>Comentarios:</label>
+
             <textarea type="text" class="rounded-md py-1.5 h-16 px-2 border-2 border-yellow-200 bg-gray-50 focus:border-2 focus:border-yellow-500 focus:ring-0 focus:outline-none"
-                formControlName="comentaries" placeholder="Ejemplo: No agregar servilletas, no agregar cubiertos"></textarea>
+                formControlName="comentaries" maxlength="250" placeholder="Ejemplo: No agregar servilletas, no agregar cubiertos"></textarea>
         </div>
     </div>
 </form>

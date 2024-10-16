@@ -28,19 +28,52 @@ export class AddressDetailsPageComponent implements OnInit {
 
   constructor(
     private _neighborhoodsService: NeighborhoodsService
-  ){}
+  ) {
+    this.form.get('deliveryType')?.valueChanges
+      .subscribe(value => {
+        this.deliveryTypeChange(value);
+      });
+  }
 
   ngOnInit(): void {
     this._neighborhoodsService.getNeighborhoods()
       .subscribe(items => this.neighborhoods = items);
   }
 
+  private deliveryTypeChange(deliveryType: string): void {
+    const neighborhood = this.form.get('neighborhood');
+    const street = this.form.get('street');
+    const exteriorNumber = this.form.get('exteriorNumber');
+    const interiorNumber = this.form.get('interiorNumber');
+    const references = this.form.get('references');
+
+    if (deliveryType == 'domicilio') {
+      neighborhood?.addValidators([Validators.required]);
+      street?.addValidators([Validators.required, Validators.maxLength(100)]);
+      exteriorNumber?.addValidators([Validators.required, Validators.maxLength(6)]);
+      interiorNumber?.addValidators([Validators.maxLength(6)]);
+      references?.addValidators([Validators.maxLength(250)]);
+    } else {
+      neighborhood?.clearValidators();
+      street?.clearValidators();
+      exteriorNumber?.clearValidators();
+      interiorNumber?.clearValidators();
+      references?.clearValidators();
+    }
+
+    neighborhood?.updateValueAndValidity();
+    street?.updateValueAndValidity();
+    exteriorNumber?.updateValueAndValidity();
+    interiorNumber?.updateValueAndValidity();
+    references?.updateValueAndValidity();
+  }
+
   public changePage(nextPage: boolean): void {
-    if(nextPage){
-      if(this.form.invalid){
+    if (nextPage) {
+      if (this.form.invalid) {
         return;
       }
-      
+
       const order = this.form.value as Order;
       this.onContinueForm.emit(order);
     }
