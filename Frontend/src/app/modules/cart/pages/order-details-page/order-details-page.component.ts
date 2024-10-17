@@ -19,13 +19,18 @@ export class OrderDetailsPageComponent {
 
   public form: FormGroup = new FormGroup({
     paymentMethod: new FormControl('', [Validators.required]),
-    paidWith: new FormControl(),
-    comentaries: new FormControl()
+    paidWith: new FormControl(0),
+    comentaries: new FormControl('', [Validators.maxLength(250)])
   });
 
   constructor(
     private readonly _cartService: CartService
-  ){}
+  ){
+    this.form.get("paymentMethod")?.valueChanges
+      .subscribe(value => {
+        this.paymentMethodChange(value)
+      });
+  }
 
   public get cartSubtotal(): number {
     return this._cartService.subtotal;
@@ -33,6 +38,17 @@ export class OrderDetailsPageComponent {
 
   public selectTip(tip: number): void { 
     this.tipSelected = tip;
+  }
+
+  private paymentMethodChange(paymentMethod: string): void {
+    const paidWhitControl = this.form.get('paidWith');
+    if(paymentMethod == 'efectivo'){
+      paidWhitControl?.setValue(this.cartSubtotal + this.tipSelected);
+      paidWhitControl?.addValidators([Validators.required, Validators.pattern('^([0-9])*$'), Validators.min(this.cartSubtotal + this.tipSelected)]);
+    } else {
+      paidWhitControl?.clearValidators();
+    }
+    paidWhitControl?.updateValueAndValidity();
   }
 
   public changePage(nextPage: boolean){
