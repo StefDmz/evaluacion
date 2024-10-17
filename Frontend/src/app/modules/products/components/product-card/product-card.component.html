@@ -3,18 +3,18 @@
 
     <div class="flex flex-col p-3.5 gap-y-2">
         <div class="relative group">
-            <h3 class="font-semibold text-xl break-all text-center">{{ product.name | cutText:'short' }}</h3>
+            <h3 class="font-semibold text-xl break-all text-center">{{ productName }}</h3>
 
             <div class="absolute hidden z-10 group-hover:flex -top-8 left-1/2 transform text-white -translate-x-1/2 bg-gray-700 text-sm rounded px-2 py-1 whitespace-nowrap">
                 {{ product.name }}
             </div>
         </div>
         <div class="relative group">
-            <p class="text-center">{{ product.description | cutText:'medium' }}</p>
+            <p class="text-center">{{ productDescription }}</p>
             
-            <div class="absolute hidden z-10 group-hover:flex -top-8 left-1/2 transform text-white -translate-x-1/2 bg-gray-700 text-sm rounded px-2 py-1 break-words">
+            <div class="absolute hidden z-10 group-hover:flex -top-8 left-1/2 transform text-white -translate-x-1/2 bg-gray-700 text-sm rounded px-2 py-1 max-w-48 overflow-wrap">
                 {{ product.description }}
-            </div>
+            </div>            
         </div>
 
         <div class="flex flex-wrap mt-2 justify-center items-center md:flex-auto md:justify-between">

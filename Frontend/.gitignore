@@ -42,4 +42,4 @@ testem.log
 Thumbs.db
 
 # Token file
-/src/environments/whatsappToken.ts
+/src/environments/tokens.ts

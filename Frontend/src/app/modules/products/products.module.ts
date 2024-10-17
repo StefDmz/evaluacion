@@ -6,7 +6,6 @@ import { ProductSidebarComponent } from './components/product-sidebar/product-si
 import { ImagePipePipe } from './pipes/imagePipe/image-pipe.pipe';
 import { LayoutComponent } from './components/layout/layout.component';
 import { SharedModule } from '../../shared/shared.module';
-import { CutTextPipe } from './pipes/cut-text/cut-text.pipe';
 
 
 
@@ -20,7 +19,6 @@ import { CutTextPipe } from './pipes/cut-text/cut-text.pipe';
 
     //pipes
     ImagePipePipe,
-    CutTextPipe,
   ],
   imports: [
     CommonModule,

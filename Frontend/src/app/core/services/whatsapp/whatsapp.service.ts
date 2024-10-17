@@ -2,13 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Order } from '../../interfaces/order.interface';
 import { CartService } from '../cart/cart.service';
-import { Token } from '../../../../environments/whatsappToken';
+import { Token } from '../../../../environments/tokens';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WhatsappService {
-  private token: string = Token.wppToken;
+  private token: string = Token.whatsapp;
 
   constructor(
     private http: HttpClient,
