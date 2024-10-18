@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Category } from '../../../core/interfaces/category.interface';
-import { CategoriesService } from '../../../core/services/categories/categories.service';
 import { CartService } from '../../../core/services/cart/cart.service';
 
 @Component({

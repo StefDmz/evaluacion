@@ -296,47 +296,5 @@
             "name": "TA - CAMARONCITO",
             "icon": "fa-shrimp"
         }
-    ],
-    "neighborhoods":[
-        {
-            "id": 1,
-            "name": "Polanco"
-        },
-        {
-            "id": 2,
-            "name": "Lomas de Chapultepec"
-        },
-        {
-            "id": 3,
-            "name": "Condesa"
-        },
-        {
-            "id": 4,
-            "name": "Roma"
-        },
-        {
-            "id": 5,
-            "name": "Anzures"
-        },
-        {
-            "id": 6,
-            "name": "Del Valle"
-        },
-        {
-            "id": 7,
-            "name": "Narvarte"
-        },
-        {
-            "id": 8,
-            "name": "Portales"
-        },
-        {
-            "id": 9,
-            "name": "Nápoles"
-        },
-        {
-            "id": 10,
-            "name": "Coyoacán"
-        }
     ]
 }

@@ -1,4 +1,4 @@
-<form class="flex flex-col w-full" [formGroup]="form">
+<form class="flex flex-col w-full" [formGroup]="form" *ngIf="!showMap">
     <h3 class="text-center text-white font-bold text-xl">Completa los datos</h3>
 
     <div class="flex flex-col mt-4 p-4 bg-yellow-50 rounded-md gap-y-3">
@@ -56,18 +56,28 @@
 
         <p class="text-yellow-400 text-center -mt-4 font-semibold">Costo de envío: $0.00</p>
 
-        <div class="flex flex-col gap-y-0.5">
-            <label>Zona, colonia o super manzana<span class="text-red-600 font-semibold">*</span>:</label>
-
-            <select class="rounded-md py-1.5 px-2 border-2 border-yellow-200 bg-gray-50 focus:border-2 focus:border-yellow-500 focus:ring-0 focus:outline-none"
-                formControlName="neighborhood">
-                <option value="">-- Seleccionar colonia --</option>
-                <option *ngFor="let item of neighborhoods" [value]="item.name">{{item.name}}</option>
-            </select>
+        <div class="flex justify-center -mt-2">
+            <button class="bg-yellow-500 rounded-md p-1.5 text-sm flex justify-center items-center text-black hover:bg-yellow-400"
+                (click)="showMap = true">
+                <i class="fa-solid fa-location-dot"></i>
+                <p class="ml-2">Seleccionar ubicación</p>
+            </button>
         </div>
 
         <div class="flex flex-col gap-y-0.5">
-            <label>Calle o mz<span class="text-red-600 font-semibold">*</span>:</label>
+            <label>Colonia<span class="text-red-600 font-semibold">*</span>:</label>
+
+            <input type="text" class="rounded-md py-1.5 px-2 border-2 border-yellow-200 bg-gray-50 focus:border-2 focus:border-yellow-500 focus:ring-0 focus:outline-none"
+                formControlName="neighborhood" placeholder="colonia" maxlength="100" required />
+
+            <small *ngIf="form.controls['neighborhood'].dirty && form.controls['neighborhood'].errors?.['required']" 
+                class="text-sm text-red-500 italic">
+                *Es necesario llenar este campo
+            </small>
+        </div>
+
+        <div class="flex flex-col gap-y-0.5">
+            <label>Calle<span class="text-red-600 font-semibold">*</span>:</label>
 
             <input type="text" class="rounded-md py-1.5 px-2 border-2 border-yellow-200 bg-gray-50 focus:border-2 focus:border-yellow-500 focus:ring-0 focus:outline-none"
                 formControlName="street" placeholder="Nombre de la calle" maxlength="100" required />
@@ -113,7 +123,15 @@
         </div>
     </div>
 </form>
-<div class="flex justify-between w-full mt-8">
+
+<div class="bg-yellow-50 rounded-md"
+    *ngIf="showMap"
+    [class]="form.get('deliveryType')?.value === 'recoger'? 'mt-4' : 'mt-0'">
+    <shared-map></shared-map>
+</div>
+
+<div class="flex justify-between w-full mt-8"
+    *ngIf="!showMap">
     <button class="bg-gray-500 rounded-md py-2.5 px-4 flex justify-center items-center text-black hover:bg-gray-400"
         (click)="changePage(false)">
         <i class="fa-solid fa-chevron-left"></i>
