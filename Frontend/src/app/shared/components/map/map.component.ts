@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import mapboxgl from 'mapbox-gl';
 import { MapboxGeocoder } from '@mapbox/search-js-web';
 import { Token } from '../../../../environments/tokens';
@@ -10,7 +10,7 @@ import { MapboxResponse } from '../../../core/interfaces/mapbox-response.interfa
   templateUrl: './map.component.html'
 })
 export class MapComponent implements OnInit {
-  @Output() mapboxResponse: EventEmitter<MapboxResponse> = new EventEmitter();
+  @Output() onMapboxResponse: EventEmitter<MapboxResponse> = new EventEmitter();
 
   private token: string = Token.mapbox;
   private geocorderElement = new MapboxGeocoder();
@@ -31,7 +31,7 @@ export class MapComponent implements OnInit {
     });
 
     this.initializeGeocoder();
-    
+
     this.addMarker([-99.1539, 19.394321]);
   }
 
@@ -68,7 +68,7 @@ export class MapComponent implements OnInit {
     const lngLat = this.marker.getLngLat();
     this._mapboxService.reverseGeocodeToGetAddress(lngLat)
       .subscribe(res => {
-        this.mapboxResponse.emit(res);
+        this.onMapboxResponse.emit(res);
       });
   }
 }

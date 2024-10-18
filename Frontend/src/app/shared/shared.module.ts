@@ -5,7 +5,6 @@ import { MapComponent } from './components/map/map.component';
 import { MenuSidebarComponent } from './components/menu-sidebar/menu-sidebar.component';
 import { NoServicePageComponent } from './pages/no-service-page/no-service-page.component';
 import { QuantityButtonsComponent } from './components/quantity-buttons/quantity-buttons.component';
-import { GoogleMapsModule } from '@angular/google-maps';
 
 
 
@@ -17,8 +16,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
     QuantityButtonsComponent,
   ],
   imports: [
-    CommonModule,
-    GoogleMapsModule,
+    CommonModule
   ], 
   exports: [
     MapComponent,

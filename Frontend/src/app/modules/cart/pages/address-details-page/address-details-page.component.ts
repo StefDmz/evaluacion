@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Order } from '../../../../core/interfaces/order.interface';
+import { MapboxResponse } from '../../../../core/interfaces/mapbox-response.interface';
 
 @Component({
   selector: 'cart-address-details-page',
@@ -32,7 +33,7 @@ export class AddressDetailsPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
+
   }
 
   private deliveryTypeChange(deliveryType: string): void {
@@ -61,6 +62,13 @@ export class AddressDetailsPageComponent implements OnInit {
     exteriorNumber?.updateValueAndValidity();
     interiorNumber?.updateValueAndValidity();
     references?.updateValueAndValidity();
+  }
+
+  public getAddressByMap(res: MapboxResponse): void {
+    this.form.get('neighborhood')?.setValue(res.features[0].properties.context.locality.name);
+    this.form.get('street')?.setValue(res.features[0].properties.context.address.street_name);
+    this.form.get('exteriorNumber')?.setValue(res.features[0].properties.context.address.address_number);
+    this.showMap = false;
   }
 
   public changePage(nextPage: boolean): void {
