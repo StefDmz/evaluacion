@@ -8,7 +8,7 @@ import { Token } from '../../../../environments/tokens';
   providedIn: 'root'
 })
 export class WhatsappService {
-  private token: string = Token.whatsapp;
+  private _token: string = Token.whatsapp;
 
   constructor(
     private http: HttpClient,
@@ -74,7 +74,7 @@ export class WhatsappService {
     this.http.post('https://graph.facebook.com/v20.0/464393396754661/messages', body, {
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${this.token}`
+        'Authorization': `Bearer ${this._token}`
       }
     }).subscribe();
   }
