@@ -127,8 +127,7 @@
 <div class="bg-yellow-50 rounded-md"
     *ngIf="showMap"
     [class]="form.get('deliveryType')?.value === 'recoger'? 'mt-4' : 'mt-0'">
-    <shared-map
-        [selectLocation]="false"></shared-map>
+    <shared-map></shared-map>
 </div>
 
 <div class="flex justify-between w-full mt-8"
