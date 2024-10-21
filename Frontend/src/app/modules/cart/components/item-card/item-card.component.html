@@ -1,20 +1,20 @@
-<li class="border-yellow-300 w-full flex flex-col"
+<li class="border-primary w-full flex flex-col"
     [class]="isLast ? 'border-none' : 'border-b-2' ">
     <div class="grid grid-cols-5 items-center py-2.5 gap-x-1 ">
     <p class="col-span-3">
         {{ item.product.name }} 
-        <span class="ml-1 text-sm italic text-yellow-500 font-semibold">x{{ item.quantity }}</span>
+        <span class="ml-1 text-sm italic text-primary-100 font-semibold">x{{ item.quantity }}</span>
     </p>
     
     <p>{{ (item.product.price * item.quantity) | currency }}</p>
     
     <div class="flex flex-col gap-y-1.5 text-sm">
-        <button class="p-1 bg-yellow-500 rounded-full text-white hover:bg-yellow-400"
+        <button class="p-1 bg-secondary rounded-full text-white hover:bg-secondary-100"
             (click)="showEditInput()">
             <i class="fa-solid fa-pencil"></i>
         </button>
         
-        <button class="p-1 border border-red-600 rounded-full text-red-600 hover:bg-red-100"
+        <button class="p-1 border border-error-100 rounded-full text-error-100 hover:bg-error-100 hover:text-white"
             (click)="deleteItem()">
             <i class="fa-solid fa-trash-can"></i>
         </button>
@@ -28,7 +28,7 @@
             [smallSize]="true"
             (onQtyChange)="newNumber = $event">
         </shared-quantity-buttons>
-        <button class="py-2 border border-yellow-500 text-yellow-500 hover:text-white hover:bg-yellow-500 rounded-md"
+        <button class="py-2 border border-background-100 text-background-100 hover:text-white hover:bg-background-100 rounded-md"
             (click)="editQuantity()">
             Aceptar
         </button>

@@ -1,13 +1,13 @@
 <form class="flex flex-col w-full" [formGroup]="form">
     <h3 class="text-center text-white font-bold text-xl">Completa los datos</h3>
 
-    <div class="flex flex-col mt-4 p-4 bg-yellow-50 rounded-md gap-y-3">
+    <div class="flex flex-col mt-4 p-4 bg-light rounded-md gap-y-3">
         <h4 class="text-center font-semibold text-lg">Propina</h4>
 
         <div class="px-4">
             <div class="grid grid-cols-3 gap-2">
                 <button *ngFor="let item of tipArray" class="rounded-md bg-transparent border py-0.5"
-                    [class]="item == tipSelected ? 'bg-yellow-500 text-white font-semibold' : 'border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-white hover:font-semibold'"
+                    [class]="item == tipSelected ? 'bg-primary-100 text-white font-semibold' : 'border-primary-100 text-primary-100 hover:bg-primary-100 hover:text-white hover:font-semibold'"
                     (click)="selectTip(item)">
                     {{ item | currency}}
                 </button>
@@ -15,17 +15,17 @@
         </div>
     </div>
 
-    <div class="flex flex-col mt-4 p-4 bg-yellow-50 rounded-md gap-y-3">
+    <div class="flex flex-col mt-4 p-4 bg-light rounded-md gap-y-3">
         <h4 class="text-center font-semibold text-lg">Cupón de descuento</h4>
 
         <div class="flex justify-between items-center">
-            <input type="text" class="rounded-md py-1.5 px-2 border-2 border-yellow-200 bg-gray-50 focus:border-2 focus:border-yellow-500 focus:ring-0 focus:outline-none" />
+            <input type="text" class="rounded-md py-1.5 px-2 border-2 border-yellow-200 bg-gray-50 focus:border-2 focus:border-background-100 focus:ring-0 focus:outline-none" />
             
             <button class="bg-yellow-200 text-white w-auto rounded-md py-1.5 px-4">Validar</button>
         </div>
     </div>
 
-    <div class="flex flex-col mt-4 p-4 bg-yellow-50 rounded-md gap-y-3">
+    <div class="flex flex-col mt-4 p-4 bg-light rounded-md gap-y-3">
         <h4 class="text-center font-semibold text-lg">Detalle del pedido</h4>
 
         <div class="grid grid-cols-2 gap-y-1">
@@ -43,10 +43,10 @@
         </div>
     </div>
 
-    <div class="flex flex-col mt-4 p-4 bg-yellow-50 rounded-md gap-y-3">
+    <div class="flex flex-col mt-4 p-4 bg-light rounded-md gap-y-3">
         <h4 class="text-center font-semibold text-lg">Método de pago</h4>
 
-        <p class="text-yellow-400 text-center -mt-4 font-semibold">Selecciona el de tu preferencia</p>
+        <p class="text-background-100 text-center -mt-4 font-semibold">Selecciona el de tu preferencia</p>
 
         <div class="flex justify-between items-center">
             <label>Efectivo:</label>
@@ -56,12 +56,12 @@
         </div>
 
         <div *ngIf="form.get('paymentMethod')?.value === 'efectivo'" >
-            <input type="number" class="rounded-md w-full py-1.5 px-2 border-2 border-yellow-200 bg-gray-50 focus:border-2 focus:border-yellow-500 focus:ring-0 focus:outline-none" 
+            <input type="number" class="rounded-md w-full py-1.5 px-2 border-2 border-yellow-200 bg-gray-50 focus:border-2 focus:border-background-100 focus:ring-0 focus:outline-none" 
             placeholder="¿Con cuánto pagas?"
             formControlName="paidWith"/>
 
             <small *ngIf="form.controls['paidWith'].errors?.['required'] || form.controls['paidWith'].errors?.['min'] || form.controls['paidWith'].errors?.['pattern']" 
-                class="text-sm text-red-500 italic">
+                class="text-sm text-error-100 italic">
                 *Debe de ser un número <span class="font-semibold">no</span> menor al total
             </small>
         </div>
@@ -76,31 +76,35 @@
         <div class="flex flex-col items-center gap-y-1" *ngIf="form.get('paymentMethod')?.value === 'transferencia'">
             <label class="font-bold">Datos de transferencia</label>
 
-            <p><span class="font-semibold">Nombre:</span> Juan Palacios Olivares</p>
-            <p><span class="font-semibold">Tarjeta:</span> 8901 2846 0493 3802</p>
-            <p><span class="font-semibold">Clabe:</span> 9018238499383104993</p>
-            <p><span class="font-semibold">Banco:</span> Banco Azteca</p>
+            <p><span class="font-semibold">Nombre:</span> {{ transferData.name }}</p>
+            <p><span class="font-semibold">Clabe:</span> {{ transferData.clabe }}</p>
+            <p><span class="font-semibold">Banco:</span> {{ transferData.bankName }}</p>
+            <button class="mt-2 rounded-md border border-primary-100 text-primary-100 flex justify-center items-centers p-1.5 hover:bg-primary-100 hover:text-white"
+                (click)="copyClabe()">
+                <i class="fa-regular fa-copy"></i>
+                <p class="ml-3">Copiar Clabe</p>
+            </button>
         </div>
     </div>
 
-    <div class="flex flex-col mt-4 p-4 bg-yellow-50 rounded-md gap-y-3">
+    <div class="flex flex-col mt-4 p-4 bg-light rounded-md gap-y-3">
         <h4 class="text-center font-semibold text-lg">Comentarios</h4>
 
         <div class="flex flex-col gap-y-0.5">
             <label>Comentarios:</label>
 
-            <textarea type="text" class="rounded-md py-1.5 h-16 px-2 border-2 border-yellow-200 bg-gray-50 focus:border-2 focus:border-yellow-500 focus:ring-0 focus:outline-none"
+            <textarea type="text" class="rounded-md py-1.5 h-16 px-2 border-2 border-yellow-200 bg-gray-50 focus:border-2 focus:border-background-100 focus:ring-0 focus:outline-none"
                 formControlName="comentaries" maxlength="250" placeholder="Ejemplo: No agregar servilletas, no agregar cubiertos"></textarea>
         </div>
     </div>
 </form>
 <div class="flex justify-between w-full mt-8">
-    <button class="bg-gray-500 rounded-md py-2.5 px-4 flex justify-center items-center text-black hover:bg-gray-400"
+    <button class="bg-gray-400 rounded-md py-2.5 px-4 flex justify-center items-center text-black hover:bg-gray-300"
         (click)="changePage(false)">
         <i class="fa-solid fa-chevron-left"></i>
         <p class="ml-2">Regresar</p>
     </button>
-    <button class="bg-yellow-500 rounded-md py-2.5 px-4 flex justify-center items-center text-black hover:bg-yellow-400"
+    <button class="bg-background rounded-md py-2.5 px-4 flex justify-center items-center text-black hover:bg-background-100"
         (click)="changePage(true)">
         <p class="mr-2">Validar pedido</p>
         <i class="fa-solid fa-check"></i>

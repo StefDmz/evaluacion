@@ -1,17 +1,17 @@
-<form class="flex flex-col w-full" [formGroup]="form" *ngIf="!showMap">
+<form class="flex flex-col w-full" [formGroup]="form" *ngIf="!showCompleteMap">
     <h3 class="text-center text-white font-bold text-xl">Completa los datos</h3>
 
-    <div class="flex flex-col mt-4 p-4 bg-yellow-50 rounded-md gap-y-3">
+    <div class="flex flex-col mt-4 p-4 bg-light rounded-md gap-y-3">
         <h4 class="text-center font-semibold text-lg">Datos personales</h4>
 
         <div class="flex flex-col gap-y-0.5">
             <label>Nombre completo<span class="text-red-600 font-semibold">*</span>:</label>
 
-            <input type="text" class="rounded-md py-1.5 px-2 border-2 border-yellow-200 bg-gray-50 focus:border-2 focus:border-yellow-500 focus:ring-0 focus:outline-none" 
+            <input type="text" class="rounded-md py-1.5 px-2 border-2 border-yellow-200 bg-gray-50 focus:border-2 focus:border-background-100 focus:ring-0 focus:outline-none" 
                 formControlName="clientName" maxlength="100" placeholder="Nombre completo" required />
 
             <small *ngIf="form.controls['clientName'].dirty && form.controls['clientName'].errors?.['required']" 
-                class="text-sm text-red-500 italic">
+                class="text-sm text-error-100 italic">
                 *Es necesario llenar este campo
             </small>
         </div>
@@ -19,17 +19,17 @@
         <div class="flex flex-col gap-y-0.5">
             <label>Celular<span class="text-red-600 font-semibold">*</span>:</label>
 
-            <input type="text" class="rounded-md py-1.5 px-2 border-2 border-yellow-200 bg-gray-50 focus:border-2 focus:border-yellow-500 focus:ring-0 focus:outline-none" 
+            <input type="text" class="rounded-md py-1.5 px-2 border-2 border-yellow-200 bg-gray-50 focus:border-2 focus:border-background-100 focus:ring-0 focus:outline-none" 
                 formControlName="clientTelephone" maxlength="10" placeholder="Celular de 10 dígitos" required/>
 
             <small *ngIf="form.controls['clientTelephone'].dirty && (form.controls['clientTelephone'].errors?.['required'] || form.controls['clientTelephone'].errors?.['pattern'])" 
-                class="text-sm text-red-500 italic">
+                class="text-sm text-error-100 italic">
                 *Es necesario llenar este campo, solo puede contener números y debe tener 10 dígitos
             </small>
         </div>
     </div>
 
-    <div class="flex flex-col mt-4 p-4 bg-yellow-50 rounded-md gap-y-3">
+    <div class="flex flex-col mt-4 p-4 bg-light rounded-md gap-y-3">
         <h4 class="text-center font-semibold text-lg">Tipo de entrega<span class="text-red-600 font-semibold">*</span></h4>
         <div class="flex justify-between items-center">
             <label>Envio a domicilio:</label>
@@ -45,20 +45,20 @@
         </div>
     </div>
 
-    <div class="flex flex-col mt-4 p-4 bg-yellow-50 rounded-md gap-y-3" *ngIf="form.get('deliveryType')?.value === 'recoger'">
+    <div class="flex flex-col mt-4 p-4 bg-light rounded-md gap-y-3" *ngIf="form.get('deliveryType')?.value === 'recoger'">
         <h4 class="text-center font-semibold text-lg">Dirección del restaurante</h4>
 
         <label>Favor de pasar por su pedido a <span class="font-medium">Xochicalco No. 195, Narvarte Poniente, 03020. Narvarte Poniente.</span></label>
     </div>
 
-    <div class="flex flex-col mt-4 p-4 bg-yellow-50 rounded-md gap-y-3" *ngIf="form.get('deliveryType')?.value === 'domicilio'">
+    <div class="flex flex-col mt-4 p-4 bg-light rounded-md gap-y-3" *ngIf="form.get('deliveryType')?.value === 'domicilio'">
         <h4 class="text-center font-semibold text-lg">Dirección de entrega</h4>
 
-        <p class="text-yellow-400 text-center -mt-4 font-semibold">Costo de envío: $0.00</p>
+        <p class="text-background text-center -mt-4 font-semibold">Costo de envío: $0.00</p>
 
         <div class="flex justify-center -mt-2">
-            <button class="bg-yellow-500 rounded-md p-1.5 text-sm flex justify-center items-center text-black hover:bg-yellow-400"
-                (click)="showMap = true">
+            <button class="bg-background-100 rounded-md p-1.5 text-sm flex justify-center items-center text-black hover:bg-background"
+                (click)="showCompleteMap = true">
                 <i class="fa-solid fa-location-dot"></i>
                 <p class="ml-2">Seleccionar ubicación</p>
             </button>
@@ -67,11 +67,11 @@
         <div class="flex flex-col gap-y-0.5">
             <label>Colonia<span class="text-red-600 font-semibold">*</span>:</label>
 
-            <input type="text" class="rounded-md py-1.5 px-2 border-2 border-yellow-200 bg-gray-50 focus:border-2 focus:border-yellow-500 focus:ring-0 focus:outline-none"
-                formControlName="neighborhood" placeholder="colonia" maxlength="100" required />
+            <input type="text" class="rounded-md py-1.5 px-2 border-2 border-yellow-200 bg-gray-50 focus:border-2 focus:border-background-100 focus:ring-0 focus:outline-none"
+                formControlName="neighborhood" placeholder="Colonia" maxlength="100" required />
 
             <small *ngIf="form.controls['neighborhood'].dirty && form.controls['neighborhood'].errors?.['required']" 
-                class="text-sm text-red-500 italic">
+                class="text-sm text-error-100 italic">
                 *Es necesario llenar este campo
             </small>
         </div>
@@ -79,11 +79,11 @@
         <div class="flex flex-col gap-y-0.5">
             <label>Calle<span class="text-red-600 font-semibold">*</span>:</label>
 
-            <input type="text" class="rounded-md py-1.5 px-2 border-2 border-yellow-200 bg-gray-50 focus:border-2 focus:border-yellow-500 focus:ring-0 focus:outline-none"
+            <input type="text" class="rounded-md py-1.5 px-2 border-2 border-yellow-200 bg-gray-50 focus:border-2 focus:border-background-100 focus:ring-0 focus:outline-none"
                 formControlName="street" placeholder="Nombre de la calle" maxlength="100" required />
 
             <small *ngIf="form.controls['street'].dirty && form.controls['street'].errors?.['required']" 
-                class="text-sm text-red-500 italic">
+                class="text-sm text-error-100 italic">
                 *Es necesario llenar este campo
             </small>
         </div>
@@ -92,11 +92,11 @@
             <div class="flex flex-col gap-y-0.5">
                 <label>Número exterior<span class="text-red-600 font-semibold">*</span>:</label>
 
-                <input type="text" class="rounded-md py-1.5 px-2 border-2 border-yellow-200 bg-gray-50 focus:border-2 focus:border-yellow-500 focus:ring-0 focus:outline-none" 
+                <input type="text" class="rounded-md py-1.5 px-2 border-2 border-yellow-200 bg-gray-50 focus:border-2 focus:border-background-100 focus:ring-0 focus:outline-none" 
                     formControlName="exteriorNumber" placeholder="000" maxlength="6" required />
 
                 <small *ngIf="form.controls['exteriorNumber'].dirty && form.controls['exteriorNumber'].errors?.['required']" 
-                    class="text-sm text-red-500 italic">
+                    class="text-sm text-error-100 italic">
                     *Es necesario llenar este campo
                 </small>
             </div>
@@ -104,7 +104,7 @@
             <div class="flex flex-col gap-y-0.5">
                 <label>Número interior:</label>
 
-                <input type="text" class="rounded-md py-1.5 px-2 border-2 border-yellow-200 bg-gray-50 focus:border-2 focus:border-yellow-500 focus:ring-0 focus:outline-none" 
+                <input type="text" class="rounded-md py-1.5 px-2 border-2 border-yellow-200 bg-gray-50 focus:border-2 focus:border-background-100 focus:ring-0 focus:outline-none" 
                     formControlName="interiorNumber" placeholder="000" maxlength="6" />
             </div>
         </div>
@@ -112,20 +112,20 @@
         <div class="flex flex-col gap-y-0.5">
             <label>Referencias:</label>
 
-            <textarea type="text" class="rounded-md py-1.5 h-16 px-2 border-2 border-yellow-200 bg-gray-50 focus:border-2 focus:border-yellow-500 focus:ring-0 focus:outline-none"
+            <textarea type="text" class="rounded-md py-1.5 h-16 px-2 border-2 border-yellow-200 bg-gray-50 focus:border-2 focus:border-background-100 focus:ring-0 focus:outline-none"
                 formControlName="references" maxlength="250">
             </textarea>
 
             <small *ngIf="form.controls['references'].errors?.['maxLength']" 
-                    class="text-sm text-red-500 italic">
+                    class="text-sm text-error-100 italic">
                     *No se puede exceder de 250 caracteres
             </small>
         </div>
     </div>
 </form>
 
-<div class="bg-yellow-50 rounded-md"
-    *ngIf="showMap"
+<div class="bg-light rounded-md"
+    *ngIf="showCompleteMap"
     [class]="form.get('deliveryType')?.value === 'recoger'? 'mt-4' : 'mt-0'">
     
     <shared-map
@@ -134,13 +134,13 @@
 </div>
 
 <div class="flex justify-between w-full mt-8"
-    *ngIf="!showMap">
-    <button class="bg-gray-500 rounded-md py-2.5 px-4 flex justify-center items-center text-black hover:bg-gray-400"
+    *ngIf="!showCompleteMap">
+    <button class="bg-gray-400 rounded-md py-2.5 px-4 flex justify-center items-center text-black hover:bg-gray-300"
         (click)="changePage(false)">
         <i class="fa-solid fa-chevron-left"></i>
         <p class="ml-2">Regresar</p>
     </button>
-    <button class="bg-yellow-500 rounded-md py-2.5 px-4 flex justify-center items-center text-black hover:bg-yellow-400"
+    <button class="bg-background rounded-md py-2.5 px-4 flex justify-center items-center text-black hover:bg-background-100"
         (click)="changePage(true)">
         <p class="mr-2">Continuar</p>
         <i class="fa-solid fa-chevron-right"></i>

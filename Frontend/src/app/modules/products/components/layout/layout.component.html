@@ -1,9 +1,9 @@
-<div class="text-3xl text-red-800 font-bold drop-shadow-lg text-center uppercase">
+<div class="text-3xl text-primary-100 font-bold drop-shadow-lg text-center uppercase">
     <i [class]="'fa-solid ' + category.icon"></i>
     <h2 class="ml-3" [id]="category.name">{{ category.name }}</h2>
 </div>
 
-<hr class="border border-green-700 my-8" />
+<hr class="border border-secondary my-8" />
 
 <div class="grid grid-cols-1 w-full sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-2.5 h-auto">
     <product-card *ngFor="let item of products" [product]="item" (onSelectedProduct)="openSidebar($event)">
