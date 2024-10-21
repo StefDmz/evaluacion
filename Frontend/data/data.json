@@ -296,5 +296,10 @@
             "name": "TA - CAMARONCITO",
             "icon": "fa-shrimp"
         }
-    ]
+    ],
+    "transferData": {
+        "name": "Juan Palacios Olivares",
+        "clabe": "901823849938310493",
+        "bankName": "Banco Azteca"
+    }
 }

@@ -12,7 +12,7 @@ export class AddressDetailsPageComponent implements OnInit {
   @Output() public onChangePage: EventEmitter<boolean> = new EventEmitter();
   @Output() public onContinueForm: EventEmitter<Order> = new EventEmitter();
 
-  public showMap: Boolean = false;
+  public showCompleteMap: Boolean = false;
 
   public form: FormGroup = new FormGroup({
     clientName: new FormControl('', [Validators.required, Validators.maxLength(100)]),
@@ -68,7 +68,7 @@ export class AddressDetailsPageComponent implements OnInit {
     this.form.get('neighborhood')?.setValue(res.features[0].properties.context.locality.name);
     this.form.get('street')?.setValue(res.features[0].properties.context.address.street_name);
     this.form.get('exteriorNumber')?.setValue(res.features[0].properties.context.address.address_number);
-    this.showMap = false;
+    this.showCompleteMap = false;
   }
 
   public changePage(nextPage: boolean): void {
