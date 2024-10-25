@@ -58,24 +58,24 @@ export class WhatsappService {
   }
 
   private sendToWhatsapp(message: string): void {
-    console.log(message);
+    // const body = {
+    //   "messaging_product": "whatsapp",
+    //   "preview_url": false,
+    //   "recipient_type": "individual",
+    //   "to": "525580252703",
+    //   "type": "text",
+    //   "text": {
+    //     "body": message
+    //   }
+    // };
 
-    const body = {
-      "messaging_product": "whatsapp",
-      "preview_url": false,
-      "recipient_type": "individual",
-      "to": "525580252703",
-      "type": "text",
-      "text": {
-        "body": message
-      }
-    };
+    // this.http.post('https://graph.facebook.com/v20.0/464393396754661/messages', body, {
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //     'Authorization': `Bearer ${this._token}`
+    //   }
+    // }).subscribe();
 
-    this.http.post('https://graph.facebook.com/v20.0/464393396754661/messages', body, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${this._token}`
-      }
-    }).subscribe();
+    window.location.href = "https://wa.me/5215580252703?text=" + encodeURIComponent(message);
   }
 }

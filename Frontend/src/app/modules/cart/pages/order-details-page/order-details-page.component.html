@@ -6,7 +6,7 @@
 
         <div class="px-4">
             <div class="grid grid-cols-3 gap-2">
-                <button *ngFor="let item of tipArray" class="rounded-md bg-transparent border py-0.5"
+                <button *ngFor="let item of tipArray" class="rounded-md border py-0.5"
                     [class]="item == tipSelected ? 'bg-primary-100 text-white font-semibold' : 'border-primary-100 text-primary-100 hover:bg-primary-100 hover:text-white hover:font-semibold'"
                     (click)="selectTip(item)">
                     {{ item | currency}}
