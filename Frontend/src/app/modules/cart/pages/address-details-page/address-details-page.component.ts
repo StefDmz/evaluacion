@@ -65,7 +65,8 @@ export class AddressDetailsPageComponent implements OnInit {
   }
 
   public getAddressByMap(res: MapboxResponse): void {
-    this.form.get('neighborhood')?.setValue(res.features[0].properties.context.locality.name);
+    const negihborhood = res.features[0].properties.context.locality ? res.features[0].properties.context.locality.name : "";
+    this.form.get('neighborhood')?.setValue(negihborhood);
     this.form.get('street')?.setValue(res.features[0].properties.context.address.street_name);
     this.form.get('exteriorNumber')?.setValue(res.features[0].properties.context.address.address_number);
     this.showCompleteMap = false;
