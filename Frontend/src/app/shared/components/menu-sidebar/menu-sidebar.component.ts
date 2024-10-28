@@ -13,9 +13,11 @@ export class MenuSidebarComponent {
 
   @Input() public categories: Category[] = [];
 
+  public isMenuOpen: boolean = false;
+
   constructor(
     private readonly _cartService: CartService
-  ){}
+  ) { }
 
   public get numberCartItems(): number {
     return this._cartService.numberProducts;
@@ -23,6 +25,10 @@ export class MenuSidebarComponent {
 
   public get cartSubtotal(): number {
     return this._cartService.subtotal;
+  }
+
+  public toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
   }
 
   public showCart(): void {

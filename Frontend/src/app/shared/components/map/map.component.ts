@@ -16,6 +16,7 @@ export class MapComponent implements OnInit {
   private geocorderElement = new MapboxGeocoder();
   private map!: mapboxgl.Map; 
   private marker!: mapboxgl.Marker;
+  private ubication: [number, number] = [-99.016293, 19.588174];
 
   constructor(
     private readonly _mapboxService: MapboxService
@@ -26,13 +27,13 @@ export class MapComponent implements OnInit {
       accessToken: this.token,
       container: 'map',
       style: 'mapbox://styles/mapbox/streets-v11',
-      center: [-99.1539, 19.394321],
+      center: this.ubication,
       zoom: 14
     });
 
     this.initializeGeocoder();
 
-    this.addMarker([-99.1539, 19.394321]);
+    this.addMarker(this.ubication);
   }
 
   private initializeGeocoder(): void {

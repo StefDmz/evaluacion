@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Order } from '../../../../core/interfaces/order.interface';
 import { MapboxResponse } from '../../../../core/interfaces/mapbox-response.interface';
@@ -9,6 +9,8 @@ import { MapboxResponse } from '../../../../core/interfaces/mapbox-response.inte
   styles: ``
 })
 export class AddressDetailsPageComponent implements OnInit {
+  @Input() public order?: Order;
+
   @Output() public onChangePage: EventEmitter<boolean> = new EventEmitter();
   @Output() public onContinueForm: EventEmitter<Order> = new EventEmitter();
 
@@ -33,7 +35,18 @@ export class AddressDetailsPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    if(this.order){
+      this.form.get('clientName')?.setValue(this.order.clientName);
+      this.form.get('clientTelephone')?.setValue(this.order.clientTelephone);
+      this.form.get('deliveryType')?.setValue(this.order.deliveryType);
+      if(this.order.deliveryType == 'domicilio'){
+        this.form.get('neighborhood')?.setValue(this.order.neighborhood);
+        this.form.get('street')?.setValue(this.order.street);
+        this.form.get('exteriorNumber')?.setValue(this.order.exteriorNumber);
+        this.form.get('interiorNumber')?.setValue(this.order.interiorNumber);
+        this.form.get('references')?.setValue(this.order.references);
+      }
+    }
   }
 
   private deliveryTypeChange(deliveryType: string): void {
@@ -65,10 +78,20 @@ export class AddressDetailsPageComponent implements OnInit {
   }
 
   public getAddressByMap(res: MapboxResponse): void {
+    if (res.features.length <= 0) {
+      alert("No se encontraron los datos de la ubicación seleccionada");
+      this.form.get('neighborhood')?.setValue('');
+      this.form.get('street')?.setValue('');
+      this.form.get('exteriorNumber')?.setValue('');
+      this.showCompleteMap = false;
+      return;
+    }
     const negihborhood = res.features[0].properties.context.locality ? res.features[0].properties.context.locality.name : "";
+    const street = res.features[0].properties.context.address.street_name ? res.features[0].properties.context.address.street_name : "";
+    const exteriorNumber = res.features[0].properties.context.address.address_number ? res.features[0].properties.context.address.address_number : "";
     this.form.get('neighborhood')?.setValue(negihborhood);
-    this.form.get('street')?.setValue(res.features[0].properties.context.address.street_name);
-    this.form.get('exteriorNumber')?.setValue(res.features[0].properties.context.address.address_number);
+    this.form.get('street')?.setValue(street);
+    this.form.get('exteriorNumber')?.setValue(exteriorNumber);
     this.showCompleteMap = false;
   }
 

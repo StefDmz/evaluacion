@@ -19,6 +19,7 @@
                         
                         <cart-address-details-page 
                             *ngIf="formPage === 2" 
+                            [order]="order"
                             (onChangePage)="changePage($event)"
                             (onContinueForm)="getFirstPartOrder($event)">
                         </cart-address-details-page>
