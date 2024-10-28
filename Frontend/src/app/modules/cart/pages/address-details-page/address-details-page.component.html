@@ -54,10 +54,10 @@
     <div class="flex flex-col mt-4 p-4 bg-light rounded-md gap-y-3" *ngIf="form.get('deliveryType')?.value === 'domicilio'">
         <h4 class="text-center font-semibold text-lg">Dirección de entrega</h4>
 
-        <p class="text-background text-center -mt-4 font-semibold">Costo de envío: $0.00</p>
+        <p class="text-primary text-center -mt-4 font-semibold">Costo de envío: $0.00</p>
 
         <div class="flex justify-center -mt-2">
-            <button class="bg-background-100 rounded-md p-1.5 text-sm flex justify-center items-center text-black hover:bg-background"
+            <button class="bg-primary-100 rounded-md p-1.5 text-sm flex justify-center items-center text-white hover:bg-primary"
                 (click)="showCompleteMap = true">
                 <i class="fa-solid fa-location-dot"></i>
                 <p class="ml-2">Seleccionar ubicación</p>
@@ -135,12 +135,12 @@
 
 <div class="flex justify-between w-full mt-8"
     *ngIf="!showCompleteMap">
-    <button class="bg-gray-400 rounded-md py-2.5 px-4 flex justify-center items-center text-black hover:bg-gray-300"
+    <button class="bg-gray-500 rounded-md py-2.5 px-4 flex justify-center items-center text-black hover:bg-gray-400"
         (click)="changePage(false)">
         <i class="fa-solid fa-chevron-left"></i>
         <p class="ml-2">Regresar</p>
     </button>
-    <button class="bg-background rounded-md py-2.5 px-4 flex justify-center items-center text-black hover:bg-background-100"
+    <button class="bg-secondary rounded-md py-2.5 px-4 flex justify-center items-center text-black hover:bg-secondary-100"
         (click)="changePage(true)">
         <p class="mr-2">Continuar</p>
         <i class="fa-solid fa-chevron-right"></i>

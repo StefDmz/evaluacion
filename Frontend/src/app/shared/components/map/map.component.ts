@@ -60,7 +60,7 @@ export class MapComponent implements OnInit {
       this.marker.remove();
     }
 
-    this.marker = new mapboxgl.Marker({ draggable: true, color: '#f4d03f' })
+    this.marker = new mapboxgl.Marker({ draggable: true, color: '#f597c3' })
       .setLngLat(coordinates)
       .addTo(this.map);
   }

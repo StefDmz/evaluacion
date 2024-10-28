@@ -1,7 +1,7 @@
 <div class="flex w-full justify-center items-center gap-x-4">
     <p>Cantidad: </p>
     <button class="rounded-full bg-transparent border flex justify-center items-center"
-        [class]="smallSize ? 'w-6 h-6 text-sm border-yellow-500 hover:bg-yellow-500 hover:text-white' : 'w-10 h-10 text-base border-white hover:bg-white hover:text-black'"
+        [class]="smallSize ? 'w-6 h-6 text-sm border-secondary-100 hover:bg-secondary-100 hover:text-black' : 'w-10 h-10 text-base border-white hover:bg-white hover:text-primary-100'"
         (click)="updateQtyProduct(false)">
         <i class="fa-solid fa-minus"></i>
     </button>
@@ -11,7 +11,7 @@
     </p>
     <button class="rounded-full bg-transparent border flex justify-center items-center"
         (click)="updateQtyProduct(true)"
-        [class]="smallSize ? 'w-6 h-6 text-sm border-yellow-500 hover:bg-yellow-500 hover:text-white' : 'w-10 h-10 text-base border-white hover:bg-white hover:text-black'">
+        [class]="smallSize ? 'w-6 h-6 text-sm border-secondary-100 hover:bg-secondary-100 hover:text-black' : 'w-10 h-10 text-base border-white hover:bg-white hover:text-primary-100'">
         <i class="fa-solid fa-plus"></i>
     </button>
 </div>

@@ -8,11 +8,11 @@
 }
 
 .input-ctrl {
-    @apply rounded-md py-1.5 px-2 border-2 border-yellow-200 bg-gray-50 focus:border-2 focus:border-background-100 focus:ring-0 focus:outline-none;
+    @apply rounded-md py-1.5 px-2 border-2 border-primary bg-gray-50 focus:border-2 focus:border-primary-100 focus:ring-0 focus:outline-none;
 }
 
 .textarea-ctrl {
-    @apply rounded-md py-1.5 h-16 px-2 border-2 border-yellow-200 bg-gray-50 focus:border-2 focus:border-background-100 focus:ring-0 focus:outline-none;
+    @apply rounded-md py-1.5 h-16 px-2 border-2 border-primary bg-gray-50 focus:border-2 focus:border-primary-100 focus:ring-0 focus:outline-none;
 }
 
 .mapboxgl-ctrl {

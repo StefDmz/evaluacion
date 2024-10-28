@@ -5,7 +5,7 @@
         <div class="w-full relative">
             <div class="flex flex-col justify-between p-6 break-words h-full overflow-y-auto">
                 <div class="flex flex-col">
-                    <div class="flex justify-between items-center text-background"
+                    <div class="flex justify-between items-center text-secondary-100"
                         *ngIf="formPage != 4">
                         <h3 class="text-2xl font-semibold"><i class="fa-solid fa-cart-shopping"></i></h3>
 
@@ -41,7 +41,7 @@
                 </div>
 
                 <div class="flex w-full" *ngIf="(numberCartItems > 0 && formPage == 1) || formPage == 4">
-                    <button class="bg-background rounded-md py-2.5 px-4 flex justify-center items-center text-black hover:bg-background-100 w-full"
+                    <button class="bg-secondary rounded-md py-2.5 px-4 flex justify-center items-center text-black hover:bg-secondary-100 w-full"
                         (click)="formPage != 4 ? changePage(true) : closeSidebar()">
                         <p class="mr-2">{{ formPage != 4 ? 'Continuar': 'Cerrar' }}</p>
                         <i class="fa-solid " [class]="formPage != 4? 'fa-chevron-right' : 'fa-xmark'"></i>
