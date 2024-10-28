@@ -6,19 +6,17 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'primary-100': '#FF5733',
-        'primary': '#FF7F50',
-        'secondary-100': '#4CAF50',
-        'secondary': '#66BB6A',
+        'primary-100': '#e36ca4',
+        'primary': '#f597c3',
+        'secondary-100': '#35bec1',
+        'secondary': '#62d8da',
         'background-100': '#FFC107',
-        'background': '#FFD54F',
-        'accent': '#F4F4F4',
-        'accent-100': '#E0E0E0',
-        'light': '#F0F0F0',
+        'background': '#ffe9a6',
+        'light': '#fffef4',
         'background-black': '#333333',
         'background-black-100': '#444444',
-        'error-100': '#F44336',
-        'error': '#EF5350'
+        'error-100': '#e13636',
+        'error': '#ea5a5a'
       }
     },
   },

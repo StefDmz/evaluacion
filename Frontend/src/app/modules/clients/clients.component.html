@@ -1,16 +1,16 @@
-<div class="flex h-screen bg-background" *ngIf="isRestaurantOpen; else noService">
+<div class="flex flex-col md:h-screen md:flex-row bg-background" *ngIf="isRestaurantOpen; else noService">
     <shared-menu-sidebar 
       (onShowCart)="openSidebar('Cart')"
       (onShowSchedule)="openSchedule()"
       [categories]="categories">
     </shared-menu-sidebar>
     
-    <div class="flex-1 overflow-y-auto p-6 scroll-smooth">
+    <div class="md:flex-1 md:overflow-y-auto p-6 scroll-smooth">
       <app-cart *ngIf="sidebarType == 'Cart'"></app-cart>
       
        <app-products
-        [categories]="categories"
-       ></app-products>
+        [categories]="categories">
+      </app-products>
     </div>
   </div>
   

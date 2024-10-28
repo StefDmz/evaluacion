@@ -25,9 +25,7 @@ export class ProductCardComponent implements OnInit {
   };
 
   private updateTextLength(width: number): void {
-    if(width < 640){
-      this.cutText(7, 20);
-    } else if(width < 1280){
+    if(width < 1280){
       this.cutText(11, 35);
     } else if(width < 1536){
       this.cutText(15, 50);
