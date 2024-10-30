@@ -6,6 +6,7 @@ import { MenuSidebarComponent } from './components/menu-sidebar/menu-sidebar.com
 import { NoServicePageComponent } from './pages/no-service-page/no-service-page.component';
 import { QuantityButtonsComponent } from './components/quantity-buttons/quantity-buttons.component';
 import { AdminSidebarComponent } from './components/admin-sidebar/admin-sidebar.component';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 
 
@@ -18,7 +19,8 @@ import { AdminSidebarComponent } from './components/admin-sidebar/admin-sidebar.
     AdminSidebarComponent,
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    GoogleMapsModule
   ], 
   exports: [
     MapComponent,
