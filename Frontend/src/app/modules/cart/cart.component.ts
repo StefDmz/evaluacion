@@ -33,17 +33,9 @@ export class CartComponent {
   }
 
   public finishOrder(): void {
-    // window.location.href = "https://wa.me/5215580252703?text=" + encodeURIComponent(messageToSend);
-    // this._ordersService.addOrder(orderComplete)
-    //   .subscribe(x => {
-    //     this._cartService.purchase(x.id);
-    //   }); 
-
     this._whatsappService.sendMessage(this.order);
 
     this._cartService.deleteAllItems();
-    
-    // alert('Pedido registrado exitosamente en la base de datos');
   }
 
   public changePage(next: boolean): void {

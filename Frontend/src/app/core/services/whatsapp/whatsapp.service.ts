@@ -76,6 +76,6 @@ export class WhatsappService {
     //   }
     // }).subscribe();
 
-    window.location.href = "https://wa.me/5215580252703?text=" + encodeURIComponent(message);
+    window.open("https://wa.me/5215580252703?text=" + encodeURIComponent(message));
   }
 }
