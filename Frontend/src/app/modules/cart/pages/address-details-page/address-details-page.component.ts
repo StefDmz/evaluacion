@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Order } from '../../../../core/interfaces/order.interface';
-import { MapboxResponse } from '../../../../core/interfaces/mapbox-response.interface';
 
 @Component({
   selector: 'cart-address-details-page',
@@ -77,18 +76,10 @@ export class AddressDetailsPageComponent implements OnInit {
     references?.updateValueAndValidity();
   }
 
-  public getAddressByMap(res: MapboxResponse): void {
-    if (res.features.length <= 0) {
-      alert("No se encontraron los datos de la ubicación seleccionada");
-      this.form.get('neighborhood')?.setValue('');
-      this.form.get('street')?.setValue('');
-      this.form.get('exteriorNumber')?.setValue('');
-      this.showCompleteMap = false;
-      return;
-    }
-    const negihborhood = res.features[0].properties.context.locality ? res.features[0].properties.context.locality.name : "";
-    const street = res.features[0].properties.context.address.street_name ? res.features[0].properties.context.address.street_name : "";
-    const exteriorNumber = res.features[0].properties.context.address.address_number ? res.features[0].properties.context.address.address_number : "";
+  public getAddressByMap(res: google.maps.GeocoderResult): void {
+    const negihborhood = res.address_components[2] ? res.address_components[2].long_name : "";
+    const street = res.address_components[1] ? res.address_components[1].long_name : "";
+    const exteriorNumber = res.address_components[0] ? res.address_components[0].long_name : "";
     this.form.get('neighborhood')?.setValue(negihborhood);
     this.form.get('street')?.setValue(street);
     this.form.get('exteriorNumber')?.setValue(exteriorNumber);

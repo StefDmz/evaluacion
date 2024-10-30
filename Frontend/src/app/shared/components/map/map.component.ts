@@ -1,75 +1,72 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import mapboxgl from 'mapbox-gl';
-import { MapboxGeocoder } from '@mapbox/search-js-web';
-import { Token } from '../../../../environments/tokens';
-import { MapboxService } from '../../../core/services/mapbox/mapbox.service';
-import { MapboxResponse } from '../../../core/interfaces/mapbox-response.interface';
+import { AfterViewInit, Component, EventEmitter, Output, ViewChild } from '@angular/core';
+import { GoogleMap } from '@angular/google-maps';
 
 @Component({
   selector: 'shared-map',
   templateUrl: './map.component.html'
 })
-export class MapComponent implements OnInit {
-  @Output() onMapboxResponse: EventEmitter<MapboxResponse> = new EventEmitter();
+export class MapComponent implements AfterViewInit {
+  @Output() onConfirmAddress: EventEmitter<google.maps.GeocoderResult> = new EventEmitter();
 
-  private token: string = Token.mapbox;
-  private geocorderElement = new MapboxGeocoder();
-  private map!: mapboxgl.Map; 
-  private marker!: mapboxgl.Marker;
-  private ubication: [number, number] = [-99.016293, 19.588174];
+  @ViewChild(GoogleMap) map!: GoogleMap;
 
-  constructor(
-    private readonly _mapboxService: MapboxService
-  ){}
+  public coordinates: google.maps.LatLng = new google.maps.LatLng({
+    lat: 19.587670,
+    lng: -99.016135
+  });
 
-  ngOnInit(): void {
-    this.map = new mapboxgl.Map({
-      accessToken: this.token,
-      container: 'map',
-      style: 'mapbox://styles/mapbox/streets-v11',
-      center: this.ubication,
-      zoom: 14
-    });
+  public mapOptions: google.maps.MapOptions = {
+    center: this.coordinates,
+    zoom: 14
+  };
+  
+  private _marker!: google.maps.Marker;
+  private _geocoder: google.maps.Geocoder = new google.maps.Geocoder();
+  
+  ngAfterViewInit(): void {
+    const input = document.getElementById('place-autocomplete-input') as HTMLInputElement;
+    const autocomplete = new google.maps.places.Autocomplete(input);
 
-    this.initializeGeocoder();
+    if (this.map.googleMap) {
+      autocomplete.bindTo('bounds', this.map.googleMap);
 
-    this.addMarker(this.ubication);
-  }
-
-  private initializeGeocoder(): void {
-    this.geocorderElement.accessToken = this.token;
-    this.geocorderElement.mapboxgl = mapboxgl;
-    this.geocorderElement.marker = false;
-    this.geocorderElement.options = {
-      language: 'es',
-      country: 'MX'
+      autocomplete.addListener('place_changed', () => {
+        const place = autocomplete.getPlace();
+        if (place.geometry && place.geometry.location) {
+          this.addMarker(place.geometry.location);
+          this.map.googleMap?.panTo(place.geometry.location);
+        }
+      });
     }
 
-    this.geocorderElement.bindMap(this.map);
-
-    this.geocorderElement.addEventListener('retrieve', (event) => {
-      const coordinates = event.detail.geometry.coordinates;
-      this.addMarker(coordinates);
-    });
-
-    document.getElementById('geocoder-container')?.appendChild(this.geocorderElement.onAdd(this.map));
+    this.addMarker(this.coordinates);
   }
 
-  private addMarker(coordinates: any): void {
-    if(this.marker){
-      this.marker.remove();
+  public addMarker(coord: google.maps.LatLng): void {
+    if(this._marker){
+      this._marker.setPosition(coord);
+    } else {
+      this._marker = new google.maps.Marker({
+        position: coord,
+        map: this.map.googleMap,
+        draggable: true
+      });
     }
-
-    this.marker = new mapboxgl.Marker({ draggable: true, color: '#f597c3' })
-      .setLngLat(coordinates)
-      .addTo(this.map);
   }
 
   public confirmAddress(): void {
-    const lngLat = this.marker.getLngLat();
-    this._mapboxService.reverseGeocodeToGetAddress(lngLat)
-      .subscribe(res => {
-        this.onMapboxResponse.emit(res);
-      });
+    const position = this._marker.getPosition();
+
+    this._geocoder.geocode({location: position}, (results, status) => {
+      if(status === google.maps.GeocoderStatus.OK){
+        if(results && results.length > 0){
+          this.onConfirmAddress.emit(results[0]);
+        } else {
+          alert("No se encontraron datos para la ubicación");
+        }
+      } else {
+        alert("Error en la geocodificación: " + status);
+      }
+    });
   }
 }

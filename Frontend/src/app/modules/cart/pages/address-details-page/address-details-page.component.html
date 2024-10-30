@@ -128,8 +128,7 @@
     *ngIf="showCompleteMap"
     [class]="form.get('deliveryType')?.value === 'recoger'? 'mt-4' : 'mt-0'">
     
-    <shared-map
-        (onMapboxResponse)="getAddressByMap($event)">
+    <shared-map (onConfirmAddress)="getAddressByMap($event)">
     </shared-map>
 </div>
 
