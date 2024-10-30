@@ -1,19 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdministrationComponent } from './administration.component';
-import { AddProductComponent } from './components/add-product/add-product.component';
-import { EditProductComponent } from './components/edit-product/edit-product.component';
+import { provideHttpClient } from '@angular/common/http';
+import { AdministrationRoutingModule } from './administration-routing.module';
+import { SharedModule } from '../../shared/shared.module';
 
 
 
 @NgModule({
   declarations: [
     AdministrationComponent,
-    AddProductComponent,
-    EditProductComponent
   ],
   imports: [
-    CommonModule
-  ]
+    CommonModule,
+    AdministrationRoutingModule,
+    SharedModule,
+  ],
+  providers: [provideHttpClient()]
 })
 export class AdministrationModule { }
