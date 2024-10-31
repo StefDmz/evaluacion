@@ -14,7 +14,7 @@ export class ProductsService {
     private http: HttpClient
   ) { }
 
-  public getProducts(category?: number): Observable<Product[]> {
+  public getProducts(category?: string): Observable<Product[]> {
     let url = `${ this.baseUrl }/products`;
 
     if(category){
@@ -23,4 +23,6 @@ export class ProductsService {
 
     return this.http.get<Product[]>(url);
   }
+
+  
 }

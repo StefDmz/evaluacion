@@ -5,9 +5,14 @@
 
             <h3 class="font-medium text-2xl">Pastes</h3>
         </div>
-        <button (click)="toggleMenu()" class="text-xl text-primary-100">
-            <i class="fa-solid fa-bars"></i> 
-        </button>
+        <div class="flex gap-x-6">
+            <button (click)="showCart()" class="text-xl text-secondary-100">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </button>
+            <button (click)="toggleMenu()" class="text-xl text-primary-100">
+                <i class="fa-solid fa-bars"></i> 
+            </button>
+        </div>
     </div>
 
     <!-- Menú Toggle -->

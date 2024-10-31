@@ -3,6 +3,14 @@
 @tailwind components;
 @tailwind utilities;
 
+th {
+    @apply p-3 text-left leading-3 font-semibold capitalize rounded-t-xl;
+}
+
+td {
+    @apply p-3 text-sm leading-3;
+}
+
 .btn-zoom { 
     @apply transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300;
 }
@@ -15,10 +23,6 @@
     @apply rounded-md py-1.5 h-16 px-2 border-2 border-primary bg-gray-50 focus:border-2 focus:border-primary-100 focus:ring-0 focus:outline-none;
 }
 
-.mapboxgl-ctrl {
-    width: 100% !important;
-}
-
-.mapboxgl-canvas {
-    width: 100% !important;
+.map-container {
+    @apply h-full !important;
 }
