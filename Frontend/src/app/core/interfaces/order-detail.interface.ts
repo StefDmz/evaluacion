@@ -1,5 +1,5 @@
 export interface OrderDetail {
-    orderId: number;
+    orderId: string;
     productId: string;
     quantity: number;
 }

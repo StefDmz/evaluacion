@@ -1,9 +1,11 @@
+<div class="flex flex-col h-screen">
 <div id="place-autocomplete-card" class="z-30 w-full">
     <input id="place-autocomplete-input" type="text" placeholder="Buscar dirección" class="input-ctrl w-full" />
 </div>
 
-<google-map id="map" height="500px" width="100%" [options]="mapOptions">
-</google-map>
+<div class="flex-grow w-full overflow-hidden">
+    <google-map id="map" width="100%" [options]="mapOptions"></google-map>
+</div>
 
 <button
     class="bg-primary-100 w-full rounded-b-md py-2.5 px-4 flex justify-center items-center text-black hover:bg-primary"
@@ -11,3 +13,4 @@
     <p class="mr-3">Aceptar</p>
     <i class="fa-solid fa-check"></i>
 </button>
+</div>

@@ -4,6 +4,7 @@ import { AdministrationComponent } from './administration.component';
 import { provideHttpClient } from '@angular/common/http';
 import { AdministrationRoutingModule } from './administration-routing.module';
 import { SharedModule } from '../../shared/shared.module';
+import { ProductsModule } from '../products/products.module';
 
 
 
@@ -15,6 +16,7 @@ import { SharedModule } from '../../shared/shared.module';
     CommonModule,
     AdministrationRoutingModule,
     SharedModule,
+    ProductsModule,
   ],
   providers: [provideHttpClient()]
 })

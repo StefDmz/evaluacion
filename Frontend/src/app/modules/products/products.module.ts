@@ -6,7 +6,7 @@ import { ProductSidebarComponent } from './components/product-sidebar/product-si
 import { ImagePipePipe } from './pipes/imagePipe/image-pipe.pipe';
 import { LayoutComponent } from './components/layout/layout.component';
 import { SharedModule } from '../../shared/shared.module';
-
+import { ProductTableComponent } from './components/product-table/product-table.component';
 
 
 
@@ -16,6 +16,7 @@ import { SharedModule } from '../../shared/shared.module';
     ProductCardComponent,
     ProductSidebarComponent,
     LayoutComponent,
+    ProductTableComponent,
 
     //pipes
     ImagePipePipe,
@@ -25,7 +26,8 @@ import { SharedModule } from '../../shared/shared.module';
     SharedModule
   ],
   exports: [
-    ProductsComponent
+    ProductsComponent,
+    ProductTableComponent,
   ]
 })
 export class ProductsModule { }

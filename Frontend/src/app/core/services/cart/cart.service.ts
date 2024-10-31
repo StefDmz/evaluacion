@@ -41,7 +41,7 @@ export class CartService {
     this.productsToBuy.push(item);
   }
 
-  public purchase(orderId: number): void {
+  public purchase(orderId: string): void {
     this._orderDetailsService.addOrderDetail(this._productsToBuy, orderId);
     this._productsToBuy = [];
   }
