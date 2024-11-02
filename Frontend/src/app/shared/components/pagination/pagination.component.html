@@ -1,0 +1,14 @@
+<div class="mt-2 flex justify-between">
+    <span></span>
+    <div class="flex gap-x-4 items-center">
+        <button *ngIf="canPrev" (click)="changePage(currentPage - 1)"><i class="fa-solid fa-angle-left"></i></button>
+
+        <div class="flex items-center">
+            <p class="mr-2">Página {{ currentPage }}</p> 
+            <!-- <input class="mx-2 p-2 w-14 rounded-md" type="number" [value]="currentPage" min="1" [max]="pages" /> -->
+            <p>de {{ pages }}</p>
+        </div>
+
+        <button *ngIf="canNext" (click)="changePage(currentPage + 1)"><i class="fa-solid fa-angle-right"></i></button>
+    </div>
+</div>

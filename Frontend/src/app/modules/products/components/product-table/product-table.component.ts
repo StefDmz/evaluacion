@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../../../../core/interfaces/product.interface';
 import { ProductsService } from '../../../../core/services/products/products.service';
-import { ProductPage } from '../../../../core/interfaces/products-page.interface';
+import { Page } from '../../../../core/interfaces/page.interface';
 
 @Component({
   selector: 'product-table',
@@ -11,7 +11,7 @@ import { ProductPage } from '../../../../core/interfaces/products-page.interface
 export class ProductTableComponent implements OnInit {
   public currentPage: number = 1;
   
-  private _productPage!: ProductPage;
+  private _productPage!: Page;
 
   constructor(
     private readonly _productService: ProductsService
