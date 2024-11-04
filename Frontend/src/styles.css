@@ -19,10 +19,31 @@ td {
     @apply rounded-md py-1.5 px-2 border-2 border-primary bg-gray-50 focus:border-2 focus:border-primary-100 focus:ring-0 focus:outline-none;
 }
 
+
 .textarea-ctrl {
     @apply rounded-md py-1.5 h-16 px-2 border-2 border-primary bg-gray-50 focus:border-2 focus:border-primary-100 focus:ring-0 focus:outline-none;
 }
 
+.input-ctrl.admin, .textarea-ctrl.admin {
+    @apply border-admin-primary focus:border-admin-primary-100 bg-zinc-50;
+}
+
 .map-container {
     @apply h-full !important;
+}
+
+.sidebar { 
+    @apply fixed inset-0 z-10;
+}
+
+.sidebar-cover {
+    @apply absolute inset-0 bg-zinc-900 bg-opacity-75;
+}
+
+.sidebar > section {
+    @apply absolute inset-y-0 right-0 w-full max-w-[450px] flex bg-background-black;
+}
+
+.sidebar.admin > section {
+    @apply bg-light;
 }

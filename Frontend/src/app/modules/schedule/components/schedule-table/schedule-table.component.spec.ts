@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FormSidebarComponent } from './form-sidebar.component';
+import { ScheduleTableComponent } from './schedule-table.component';
 
-describe('FormSidebarComponent', () => {
-  let component: FormSidebarComponent;
-  let fixture: ComponentFixture<FormSidebarComponent>;
+describe('ScheduleTableComponent', () => {
+  let component: ScheduleTableComponent;
+  let fixture: ComponentFixture<ScheduleTableComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [FormSidebarComponent]
+      declarations: [ScheduleTableComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(FormSidebarComponent);
+    fixture = TestBed.createComponent(ScheduleTableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

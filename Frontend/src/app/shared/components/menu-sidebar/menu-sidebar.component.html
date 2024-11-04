@@ -30,10 +30,10 @@
             </div>
 
             <a class="flex justify-center items-center py-1.5 rounded-lg hover:bg-primary hover:text-white"
-                *ngFor="let item of categories"
-                [href]="'#' + item.name"
+                *ngFor="let item of options"
+                [href]="item.route"
                 (click)="toggleMenu()">
-                <i [class]="'fa-solid ' + item.icon"></i>
+                <i [class]="item.icon"></i>
 
                 <p class="ml-3">{{item.name}}</p>
             </a>
@@ -68,9 +68,9 @@
                 </div>
                 <div class="flex flex-col justify-center text-lg font-medium">
                     <a class="flex justify-center items-center py-1.5 rounded-lg hover:bg-primary hover:text-white"
-                    *ngFor="let item of categories"
-                    [href]="'clients#' + item.name">
-                    <i [class]="'fa-solid ' + item.icon"></i>
+                    *ngFor="let item of options"
+                    [href]="item.route">
+                    <i [class]="item.icon"></i>
                     <p class="ml-3">{{item.name}}</p>
                 </a>
                 </div>

@@ -4,16 +4,18 @@
             <table class="w-full rounded-xl text-center">
                 <thead>
                     <tr class="bg-yellow-100">
-                        <th scope="col" class="text-center">Icon</th>
-                        <th scope="col" class="text-center">Nombre</th>
+                        <th scope="col" class="text-center">Día</th>
+                        <th scope="col" class="text-center">Apertura</th>
+                        <th scope="col" class="text-center">Cierre</th>
                         <th scope="col" class="text-center">Opciones</th>
                     </tr>
                 </thead>
                 <tbody class="bg-light">
-                    <tr *ngFor="let item of categories; let isLast = last"
+                    <tr *ngFor="let item of schedules; let isLast = last"
                         [class]="isLast ? '' : 'border-b border-gray-300'">
-                        <td><i [class]="'text-xl ' + item.icon"></i></td>
-                        <td>{{ item.name }}</td>
+                        <td>{{ item.day }}</td>
+                        <td>{{ item.open != '' ? item.open : '-' }}</td>
+                        <td>{{ item.close != '' ? item.close : '-' }}</td>
                         <td>
                             <div class="flex items-center gap-2 justify-center">
                                 <button class="p-2 rounded-full text-base text-secondary-100">
@@ -29,12 +31,4 @@
             </table>
         </div>
     </div>
-
-    <shared-pagination
-        [canNext]="canNext"
-        [canPrev]="canPrev"
-        [currentPage]="currentPage"
-        [pages]="pages"
-        (onChangePage)="changePage($event)">
-    </shared-pagination>
 </div>

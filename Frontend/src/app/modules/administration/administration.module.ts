@@ -10,6 +10,7 @@ import { ProductAdminComponent } from './pages/product-admin/product-admin.compo
 import { CategoryAdminComponent } from './pages/category-admin/category-admin.component';
 import { SchedulesAdminComponent } from './pages/schedules-admin/schedules-admin.component';
 import { InformationAdminComponent } from './pages/information-admin/information-admin.component';
+import { ScheduleModule } from '../schedule/schedule.module';
 
 
 
@@ -27,6 +28,7 @@ import { InformationAdminComponent } from './pages/information-admin/information
     SharedModule,
     ProductsModule,
     CategoriesModule,
+    ScheduleModule,
   ],
   providers: [provideHttpClient()]
 })

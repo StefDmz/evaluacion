@@ -9,7 +9,7 @@ import { ProductSidebarComponent } from './components/product-sidebar/product-si
 import { LayoutComponent } from './components/layout/layout.component';
 import { SharedModule } from '../../shared/shared.module';
 import { ProductTableComponent } from './components/product-table/product-table.component';
-import { FormSidebarComponent } from './components/form-sidebar/form-sidebar.component';
+import { ProductFormComponent } from './components/product-form/product-form.component';
 
 
 
@@ -20,7 +20,7 @@ import { FormSidebarComponent } from './components/form-sidebar/form-sidebar.com
     ProductSidebarComponent,
     LayoutComponent,
     ProductTableComponent,
-    FormSidebarComponent,
+    ProductFormComponent,
     
     //pipes
     ImagePipePipe,
@@ -32,6 +32,7 @@ import { FormSidebarComponent } from './components/form-sidebar/form-sidebar.com
   exports: [
     ProductsComponent,
     ProductTableComponent,
+    ProductFormComponent,
   ]
 })
 export class ProductsModule { }

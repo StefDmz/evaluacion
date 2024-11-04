@@ -1,1 +1,1 @@
-export type SidebarType = '' | 'Cart' | 'Product';
+export type SidebarType = '' | 'Cart' | 'Product' | 'Create' | 'Edit';
