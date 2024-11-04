@@ -5,18 +5,30 @@ import { provideHttpClient } from '@angular/common/http';
 import { AdministrationRoutingModule } from './administration-routing.module';
 import { SharedModule } from '../../shared/shared.module';
 import { ProductsModule } from '../products/products.module';
+import { CategoriesModule } from '../categories/categories.module';
+import { ProductAdminComponent } from './pages/product-admin/product-admin.component';
+import { CategoryAdminComponent } from './pages/category-admin/category-admin.component';
+import { SchedulesAdminComponent } from './pages/schedules-admin/schedules-admin.component';
+import { InformationAdminComponent } from './pages/information-admin/information-admin.component';
+import { ScheduleModule } from '../schedule/schedule.module';
 
 
 
 @NgModule({
   declarations: [
     AdministrationComponent,
+    ProductAdminComponent,
+    CategoryAdminComponent,
+    SchedulesAdminComponent,
+    InformationAdminComponent,
   ],
   imports: [
     CommonModule,
     AdministrationRoutingModule,
     SharedModule,
     ProductsModule,
+    CategoriesModule,
+    ScheduleModule,
   ],
   providers: [provideHttpClient()]
 })

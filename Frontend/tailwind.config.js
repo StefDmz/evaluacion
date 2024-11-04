@@ -19,8 +19,10 @@ module.exports = {
         'error': '#ea5a5a',
         'warning': '#fcda32',
         'warning-100': '#f8d217',
-        'accent': '#62f273',
-        'accent-100': '#44d755'
+        'accent': '#ff983c',
+        'accent-100': '#fd8b26',
+        'admin-primary': '#c0451f',
+        'admin-primary-100': '#a32700'
       }
     },
   },

@@ -284,17 +284,17 @@
         {
             "id": 1,
             "name": "Pastes Salados",
-            "icon": "fa-pizza-slice"
+            "icon": "fa-solid fa-pizza-slice"
         }, 
         {
             "id": 2,
             "name": "Pastes Dulce Locura",
-            "icon": "fa-ice-cream"
+            "icon": "fa-solid fa-ice-cream"
         },
         {
             "id": 3,
             "name": "TA - CAMARONCITO",
-            "icon": "fa-shrimp"
+            "icon": "fa-solid fa-shrimp"
         }
     ],
     "transferData": {

@@ -12,32 +12,19 @@
 
     <!-- Menú Toggle -->
     <div *ngIf="isMenuOpen" class="md:hidden flex flex-col gap-y-8 mt-4">
-        
-
         <div class="flex flex-col justify-center text-lg font-medium">
             <div class="flex justify-center items-center text-3xl font-semibold">
                 <i class="fa-solid fa-gear"></i>
                 <p class="ml-3">Opciones</p>
             </div>
 
-            <a class="flex justify-center items-center py-1.5 rounded-lg hover:bg-accent hover:text-white">
-                <i class="fa-solid fa-drumstick-bite"></i>
-
-                <p class="ml-3">Productos</p>
-            </a>
-            <a class="flex justify-center items-center py-1.5 rounded-lg hover:bg-accent hover:text-white">
-                <i class="fa-solid fa-list"></i>
-
-                <p class="ml-3">Categorías</p>
-            </a>
-            <a class="flex justify-center items-center py-1.5 rounded-lg hover:bg-accent hover:text-white">
-                <i class="fa-solid fa-clock"></i>
-
-                <p class="ml-3">Horarios</p>
+            <a class="flex justify-center items-center py-1.5 rounded-lg hover:bg-accent"
+                [href]="item.route" *ngFor="let item of options">
+                <i [class]="item.icon"></i>
+                
+                <p class="ml-3">{{ item.name }}</p>
             </a>
         </div>
-
-        
     </div>
 
     <!-- Sidebar -->
@@ -52,26 +39,17 @@
                     <i class="fa-solid fa-gear"></i>
                     <p class="ml-3">Opciones</p>
                 </div>
+                
                 <div class="flex flex-col justify-center text-lg font-medium">
-                    <a class="flex justify-center items-center py-1.5 rounded-lg hover:bg-accent">
-                        <i class="fa-solid fa-drumstick-bite"></i>
+                    <a class="flex justify-center items-center py-1.5 rounded-lg hover:bg-accent" 
+                        [href]="item.route" *ngFor="let item of options">
+                        <i [class]="item.icon"></i>
 
-                        <p class="ml-3">Productos</p>
-                    </a>
-                    <a class="flex justify-center items-center py-1.5 rounded-lg hover:bg-accent">
-                        <i class="fa-solid fa-list"></i>
-
-                        <p class="ml-3">Categorías</p>
-                    </a>
-                    <a class="flex justify-center items-center py-1.5 rounded-lg hover:bg-accent">
-                        <i class="fa-solid fa-clock"></i>
-
-                        <p class="ml-3">Horarios</p>
+                        <p class="ml-3">{{ item.name }}</p>
                     </a>
                 </div>
             </div>
         </div>
-
-       
     </div>
+
 </div>

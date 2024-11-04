@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Category } from '../../../core/interfaces/category.interface';
 import { CartService } from '../../../core/services/cart/cart.service';
+import { SidebarItem } from '../../../core/interfaces/sidebar-item.interface';
 
 @Component({
   selector: 'shared-menu-sidebar',
@@ -25,6 +26,20 @@ export class MenuSidebarComponent {
 
   public get cartSubtotal(): number {
     return this._cartService.subtotal;
+  }
+
+  public get options(): SidebarItem[] {
+    let items: SidebarItem[] = [];
+
+    this.categories.forEach(x => {
+      items.push({
+        name: x.name,
+        icon: x.icon,
+        route: 'clients#' + x.name
+      });
+    });
+
+    return items;
   }
 
   public toggleMenu() {

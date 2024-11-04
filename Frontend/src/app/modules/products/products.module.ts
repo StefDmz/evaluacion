@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
+import { ImagePipePipe } from './pipes/imagePipe/image-pipe.pipe';
+
 import { ProductsComponent } from './products.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { ProductSidebarComponent } from './components/product-sidebar/product-sidebar.component';
-import { ImagePipePipe } from './pipes/imagePipe/image-pipe.pipe';
 import { LayoutComponent } from './components/layout/layout.component';
 import { SharedModule } from '../../shared/shared.module';
 import { ProductTableComponent } from './components/product-table/product-table.component';
+import { ProductFormComponent } from './components/product-form/product-form.component';
 
 
 
@@ -17,7 +20,8 @@ import { ProductTableComponent } from './components/product-table/product-table.
     ProductSidebarComponent,
     LayoutComponent,
     ProductTableComponent,
-
+    ProductFormComponent,
+    
     //pipes
     ImagePipePipe,
   ],
@@ -28,6 +32,7 @@ import { ProductTableComponent } from './components/product-table/product-table.
   exports: [
     ProductsComponent,
     ProductTableComponent,
+    ProductFormComponent,
   ]
 })
 export class ProductsModule { }

@@ -3,7 +3,7 @@ import { environment } from '../../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Product } from '../../interfaces/product.interface';
-import { ProductPage } from '../../interfaces/products-page.interface';
+import { Page } from '../../interfaces/page.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -25,9 +25,9 @@ export class ProductsService {
     return this.http.get<Product[]>(url);
   }
 
-  public getProductByPage(page: number): Observable<ProductPage> {
-    let url = `${ this.baseUrl }/products?_page=${ page }&_per_page=5`;
+  public getProductByPage(page: number): Observable<Page> {
+    let url = `${ this.baseUrl }/products?_sort=name&_page=${ page }&_per_page=5`;
 
-    return this.http.get<ProductPage>(url);
+    return this.http.get<Page>(url);
   }
 }

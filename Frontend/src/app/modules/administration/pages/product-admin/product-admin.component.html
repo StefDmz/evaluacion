@@ -1,0 +1,18 @@
+<product-form *ngIf="sidebarType == 'Create'"></product-form>
+
+<div class="flex justify-between items-center">
+    <div class="text-3xl text-accent-100 font-bold drop-shadow-lg text-center uppercase flex justify-center items-center w-full">
+        <i class="fa-solid fa-drumstick-bite"></i>
+        <h2 class="ml-3" id="productos">Productos</h2>
+    </div>
+
+    <button class="flex justify-end items-center text-admin-primary-100 font-semibold w-auto"
+        (click)="openSidebar('Create')">
+        <i class="fa-regular fa-square-plus text-2xl"></i>
+        <p class="ml-2 text-xl hidden underline sm:block">Agregar</p>
+</button>
+</div>
+
+<hr class="border border-warning-100 my-8" />
+
+<product-table></product-table>

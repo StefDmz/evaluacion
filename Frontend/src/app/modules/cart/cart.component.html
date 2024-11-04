@@ -1,7 +1,6 @@
-<div class="fixed inset-0 z-10">
-    <div class="absolute inset-0 bg-zinc-900 bg-opacity-75"></div>
-    <section class="absolute inset-y-0 right-0 w-full max-w-[450px] flex bg-background-black animate__animated"
-        [class]="isOpen ? 'animate__fadeInRightBig' : 'animate__fadeOutRight'">
+<div class="sidebar">
+    <div class="sidebar-cover"></div>
+    <section class="animate__animated" [class]="isOpen ? 'animate__fadeInRightBig' : 'animate__fadeOutRight'">
         <div class="w-full relative">
             <div class="flex flex-col justify-between p-6 break-words h-full overflow-y-auto">
                 <div class="flex flex-col">
