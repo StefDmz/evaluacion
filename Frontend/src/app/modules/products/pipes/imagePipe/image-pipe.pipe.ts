@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class ImagePipePipe implements PipeTransform {
 
   transform(imageUrl: string): string {
-    return `assets/${imageUrl}`;
+    return `/${imageUrl}`;
   }
 
 }
