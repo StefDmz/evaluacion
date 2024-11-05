@@ -3,7 +3,6 @@ import { environment } from '../../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Product } from '../../interfaces/product.interface';
-import { Page } from '../../interfaces/page.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -25,9 +24,14 @@ export class ProductsService {
     return this.http.get<Product[]>(url);
   }
 
-  public getProductByPage(page: number): Observable<Page> {
-    let url = `${ this.baseUrl }/products?_sort=name&_page=${ page }&_per_page=5`;
+  public getPages(): number {
+    let products: Product[] = [];
 
-    return this.http.get<Page>(url);
+    this.getProducts()
+      .subscribe(items => products = items);
+
+    return Math.ceil((products.length + 1) / 5);
   }
+
+  
 }
