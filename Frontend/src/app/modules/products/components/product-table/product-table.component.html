@@ -12,10 +12,36 @@
                     </tr>
                 </thead>
                 <tbody class="bg-light">
-                   
+                    <tr *ngFor="let item of products; let isLast = last"
+                        [class]="isLast ? '' : 'border-b border-gray-300'">
+                        <td>
+                            <img class="h-24 w-24 rounded-lg" [src]="item.image | imagePipe" />
+                        </td>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.description }}</td>
+                        <td>{{ item.price | currency }}</td>
+                        <td>
+                            <div class="flex flex-col items-center gap-2">
+                                <button class="p-2 rounded-full text-base text-secondary-100"
+                                    (click)="editProduct(item)">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </button>
+                                <button class="p-2 rounded-full text-base text-error-100">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>
     </div>
 
+    <shared-pagination
+        [canNext]="canNext"
+        [canPrev]="canPrev"
+        [currentPage]="currentPage"
+        [pages]="pages"
+        (onChangePage)="changePage($event)">
+    </shared-pagination>
 </div>

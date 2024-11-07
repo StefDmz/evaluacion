@@ -60,7 +60,7 @@ export class ClientsComponent implements OnInit {
     const schedule = this.schedules.find(x => x.weekDayId == currentWeekDay);
 
     if (schedule) {
-      if (schedule.open == '') {
+      if (schedule.open == null || schedule.close == null) {
         this.isRestaurantOpen = false;
         return;
       }

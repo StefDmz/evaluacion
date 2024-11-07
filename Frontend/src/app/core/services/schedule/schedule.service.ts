@@ -15,6 +15,6 @@ export class ScheduleService {
   ) { }
 
   public getSchedules(): Observable<Schedule[]> {
-    return this.http.get<Schedule[]>(`${ this._baseUrl }/schedules`);
+    return this.http.get<Schedule[]>(`${ this._baseUrl }/schedules.php`);
   }
 }

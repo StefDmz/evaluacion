@@ -1,4 +1,5 @@
-<product-form *ngIf="sidebarType == 'Create'"></product-form>
+<product-form *ngIf="sidebarType === 'Create'" [sidebarType]="'Create'"></product-form>
+<product-form *ngIf="sidebarType === 'Edit'" [product]="productSelected"></product-form>
 
 <div class="flex justify-between items-center">
     <div class="text-3xl text-accent-100 font-bold drop-shadow-lg text-center uppercase flex justify-center items-center w-full">
@@ -15,4 +16,5 @@
 
 <hr class="border border-warning-100 my-8" />
 
-<product-table></product-table>
+<product-table 
+    (onEditProduct)="editProduct($event)"></product-table>

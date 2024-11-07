@@ -5,93 +5,93 @@
             <div class="flex flex-col justify-between p-6 break-words h-full overflow-y-auto">
                 <div class="flex flex-col">
                     <div class="flex items-center justify-between text-admin-primary-100">
-                        <h3 class="text-2xl font-semibold">Agregar producto</h3>
+                        <h3 class="text-2xl font-semibold">{{ sidebarType === 'Create' ? 'Agregar' : 'Editar' }} producto</h3>
 
                         <button class="text-3xl" (click)="closeSidebar()">
                             <i class="fa-solid fa-xmark"></i>
                         </button>
                     </div>
 
-                    <form class="my-10 flex flex-col items-center justify-items-center w-full gap-y-8">
-                        <div class="flex flex-col gap-y-0.5">
+                    <form class="my-10 flex flex-col items-center justify-items-center w-full gap-y-8" [formGroup]="productForm">
+                        <div class="flex flex-col gap-y-0.5 w-full">
                             <label>Nombre<span class="text-red-600 font-semibold">*</span>:</label>
                 
-                            <input type="text" class="input-ctrl admin w-full" placeholder="Nombre del producto" required/>
+                            <input type="text" class="input-ctrl admin w-full" maxlength="50" placeholder="Nombre del producto" formControlName="name" required/>
                 
-                            <small class="text-sm text-error-100 italic">
-                                *Es necesario llenar este campo, solo puede contener números y debe tener 10 dígitos
+                            <small *ngIf="productForm.controls['name'].dirty && (productForm.controls['name'].errors?.['required'] || productForm.controls['name'].errors?.['maxLength'])" class="text-sm text-error-100 italic">
+                                *Es necesario llenar este campo sin más de 50 caracteres
                             </small>
                         </div>
 
-                        <div class="flex flex-col gap-y-0.5">
+                        <div class="flex flex-col gap-y-0.5 w-full">
                             <label>Descripción<span class="text-red-600 font-semibold">*</span>:</label>
                 
-                            <textarea class="textarea-ctrl admin w-full" placeholder="Descripción del producto" required></textarea>
+                            <textarea class="textarea-ctrl admin w-full" maxlength="150" placeholder="Descripción del producto" formControlName="description" required></textarea>
                 
-                            <small class="text-sm text-error-100 italic">
-                                *Es necesario llenar este campo, solo puede contener números y debe tener 10 dígitos
+                            <small *ngIf="productForm.controls['description'].dirty && (productForm.controls['description'].errors?.['required'] || productForm.controls['description'].errors?.['maxLength'])" class="text-sm text-error-100 italic">
+                                *Es necesario llenar este campo sin más de 150 caracteres
                             </small>
                         </div>
                         
-                        <div class="flex flex-col gap-y-0.5">
+                        <div class="flex flex-col gap-y-0.5 w-full">
                             <label>Precio<span class="text-red-600 font-semibold">*</span>:</label>
                 
-                            <input type="number" class="input-ctrl admin w-full" min="1" placeholder="Precio del producto" required/>
+                            <input type="number" class="input-ctrl admin w-full" min="0.01" step="0.01" placeholder="Precio del producto" formControlName="price" required/>
                 
-                            <small class="text-sm text-error-100 italic">
-                                *Es necesario llenar este campo, solo puede contener números y debe tener 10 dígitos
+                            <small *ngIf="productForm.controls['price'].dirty && (productForm.controls['price'].errors?.['required'] || productForm.controls['price'].errors?.['min'])" class="text-sm text-error-100 italic">
+                                *Es necesario llenar este campo y debe ser mayor a $0.01
                             </small>
                         </div>
 
 
-                        <div class="flex flex-col gap-y-0.5">
+                        <div class="flex flex-col gap-y-0.5 w-full">
                             <label>Stock<span class="text-red-600 font-semibold">*</span>:</label>
                 
-                            <input type="number" class="input-ctrl admin w-full" min="1" placeholder="Stock del producto" required/>
+                            <input type="number" class="input-ctrl admin w-full" min="0" placeholder="Stock del producto" formControlName="stock" required/>
                 
-                            <small class="text-sm text-error-100 italic">
-                                *Es necesario llenar este campo, solo puede contener números y debe tener 10 dígitos
+                            <small *ngIf="productForm.controls['stock'].dirty && (productForm.controls['stock'].errors?.['required'] || productForm.controls['stock'].errors?.['min'])" class="text-sm text-error-100 italic">
+                                *Es necesario llenar este campo y debe ser un número mayor o igual a 0
                             </small>
                         </div>
 
-                        <div class="flex flex-col gap-y-0.5">
+                        <div class="flex flex-col gap-y-0.5 w-full">
                             <label>Sku:</label>
                 
-                            <input type="text" class="input-ctrl admin w-full" placeholder="Sku del producto" />
-                
-                            <small class="text-sm text-error-100 italic">
-                                *Es necesario llenar este campo, solo puede contener números y debe tener 10 dígitos
-                            </small>
+                            <input type="text" class="input-ctrl admin w-full" maxlength="15" placeholder="Sku del producto" formControlName="sku" />
                         </div>
 
-                        <div class="flex flex-col gap-y-0.5">
+                        <div class="flex justify-start items-center w-full">
                             <label>Disponible<span class="text-red-600 font-semibold">*</span>:</label>
                 
-                            <input type="text" class="input-ctrl admin w-full" placeholder="Nombre del producto" required/>
-                
-                            <small class="text-sm text-error-100 italic">
-                                *Es necesario llenar este campo, solo puede contener números y debe tener 10 dígitos
-                            </small>
+                            <input type="checkbox" class="ml-6 h-5 w-5" formControlName="available" />
                         </div>
 
-                        <div class="flex flex-col gap-y-0.5">
+                        <div class="flex flex-col gap-y-0.5 w-full">
                             <label>Imágen<span class="text-red-600 font-semibold">*</span>:</label>
                 
-                            <input type="file" class="input-ctrl admin w-full file:border-none file:bg-transparent" required/>
+                            <!-- <input type="file" class="rounded-md border-2 border-admin-primary focus:border-2 focus:ring-0 focus:outline-none focus:border-admin-primary-100 bg-zinc-50 file:border-0 file:bg-admin-primary file:h-8 file:bg-opacity-30 file:px-4" required/> -->
+                            <input type="text" class="input-ctrl admin w-full" placeholder="Url de la imagen" formControlName="image" required/>
                 
-                            <small class="text-sm text-error-100 italic">
-                                *Es necesario llenar este campo, solo puede contener números y debe tener 10 dígitos
+                            <small *ngIf="productForm.controls['image'].dirty && productForm.controls['image'].errors?.['required']" class="text-sm text-error-100 italic">
+                                *Es necesario seleccionar una imagen
                             </small>
                         </div>
-                        
-                        <img class="w-36 h-36 rounded-md"  />
                     </form>
                 </div>
 
-                <button class="bg-admin-primary-100 rounded-md py-2.5 flex justify-center items-center text-black hover:bg-admin-primary btn-zoom">
-                    <i class="fa-solid fa-cart-plus text-xl"></i>
-                    <p class="ml-3">Cambiar</p>
-                </button>
+                <div class="flex justify-between w-full">
+                    <button class="bg-gray-500 rounded-md py-2.5 px-4 flex justify-center items-center text-black hover:bg-gray-400"
+                        (click)="closeSidebar()">
+                        <i class="fa-solid fa-x text-xl"></i>
+                        <p class="ml-3">Cancelar</p>
+                    </button>
+
+                    <button class="bg-admin-primary-100 rounded-md py-2.5 px-4 flex justify-center items-center text-white hover:bg-admin-primary"
+                        (click)="submit()">
+                        <i class="fa-solid fa-check text-xl"></i>
+                        <p class="ml-3">Aceptar</p>
+                    </button>
+                </div>
             </div>
         </div>
     </section>

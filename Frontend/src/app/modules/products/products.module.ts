@@ -10,6 +10,7 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { SharedModule } from '../../shared/shared.module';
 import { ProductTableComponent } from './components/product-table/product-table.component';
 import { ProductFormComponent } from './components/product-form/product-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -27,7 +28,8 @@ import { ProductFormComponent } from './components/product-form/product-form.com
   ],
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule,
   ],
   exports: [
     ProductsComponent,
