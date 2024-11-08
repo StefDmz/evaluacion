@@ -2,8 +2,9 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CartService } from '../../../../core/services/cart/cart.service';
 import { Order } from '../../../../core/interfaces/order.interface';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { TransferDataService } from '../../../../core/services/transfer-data/transfer-data.service';
-import { TransferData } from '../../../../core/interfaces/transfer-data.interface';
+import { GeneralInformation } from '../../../../core/interfaces/general-information.interface';
+import { GeneralInformationService } from '../../../../core/services/general-information/general-information.service';
+
 
 @Component({
   selector: 'cart-order-details-page',
@@ -18,7 +19,7 @@ export class OrderDetailsPageComponent {
 
   public tipSelected: number = 0;
   public tipArray: number[] = [0, 10, 20, 30, 40, 50];
-  public transferData!: TransferData;
+  public information!: GeneralInformation;
 
   public form: FormGroup = new FormGroup({
     paymentMethod: new FormControl('', [Validators.required]),
@@ -28,7 +29,7 @@ export class OrderDetailsPageComponent {
 
   constructor(
     private readonly _cartService: CartService,
-    private readonly _transferDataService: TransferDataService
+    private readonly _generalInfoService: GeneralInformationService
   ){
     this.form.get("paymentMethod")?.valueChanges
       .subscribe(value => {
@@ -47,9 +48,10 @@ export class OrderDetailsPageComponent {
       paidWhitControl?.addValidators([Validators.required, Validators.pattern('^([0-9])*$'), Validators.min(this.cartSubtotal + this.tipSelected)]);
     } else {
       paidWhitControl?.clearValidators();
-      if(!this.transferData){
-        this._transferDataService.getTransferData()
-          .subscribe(item => this.transferData = item);
+
+      if(!this.information){
+        this._generalInfoService.getInformation()
+          .subscribe(item => this.information = item);
       }
     }
     paidWhitControl?.updateValueAndValidity();
@@ -60,7 +62,7 @@ export class OrderDetailsPageComponent {
   }
 
   public copyClabe(): void {
-    navigator.clipboard.writeText(this.transferData.clabe);
+    navigator.clipboard.writeText(this.information.clabe);
   }
   
   public changePage(nextPage: boolean){

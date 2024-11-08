@@ -9,6 +9,7 @@ import { InformationAdminComponent } from './pages/information-admin/information
 
 const routes: Routes = [
     { path: '', component: AdministrationComponent, children: [
+        { path: '', redirectTo: 'products', pathMatch: 'full' },
         { path: 'products', component: ProductAdminComponent },
         { path: 'categories', component: CategoryAdminComponent },
         { path: 'schedules', component: SchedulesAdminComponent },
