@@ -27,9 +27,10 @@
                             <div class="flex flex-col gap-y-0.5 w-full">
                                 <label>Nombre<span class="text-red-600 font-semibold">*</span>:</label>
                             
-                                <input type="text" class="input-ctrl admin w-full" maxlength="50" placeholder="Nombre de la categoría" formControlName="name" required/>
+                                <input type="text" class="input-ctrl admin w-full" maxlength="20" placeholder="Nombre de la categoría" formControlName="name" required/>
                             
-                                <small class="text-sm text-error-100 italic">
+                                <small *ngIf="categoryForm.controls['name'].dirty && (categoryForm.controls['name'].errors?.['required'] || categoryForm.controls['name'].errors?.['maxLength'])" 
+                                    class="text-sm text-error-100 italic">
                                     *Es necesario llenar este campo sin más de 20 caracteres
                                 </small>
                             </div>
@@ -52,7 +53,8 @@
                                     </span>
                                 </small>
 
-                                <small class="text-sm text-error-100 italic">
+                                <small *ngIf="categoryForm.controls['icon'].dirty && categoryForm.controls['icon'].errors?.['required']"
+                                    class="text-sm text-error-100 italic">
                                     *Es necesario llenar este campo
                                 </small>
                             </div>

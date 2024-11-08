@@ -47,10 +47,19 @@ export class CategoryFormComponent implements OnInit {
     if(this.categoryForm.invalid) return;
 
     this.loading = true;
-    
-    if(this.sidebarType === 'Create'){
 
+    if(this.sidebarType === 'Create'){
+      this._categoriesService.addCategory(this.currentCategory)
+        .subscribe(() => {
+          location.reload();
+        });
+        return;
     }
+
+    this._categoriesService.updateCategory(this.currentCategory)
+      .subscribe(() => {
+        location.reload();
+      });
   }
 
   public closeSidebar(): void {
