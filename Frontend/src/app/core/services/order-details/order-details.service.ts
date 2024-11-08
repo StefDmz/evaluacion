@@ -15,7 +15,7 @@ export class OrderDetailsService {
     private http: HttpClient
   ) { }
 
-  public addOrderDetail(products: CartItem[], orderId: string): void {
+  public addOrderDetail(products: CartItem[], orderId: number): void {
     products.forEach(item => {
       var orderDetail = {
         orderId: orderId,

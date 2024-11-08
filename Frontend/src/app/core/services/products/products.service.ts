@@ -14,7 +14,7 @@ export class ProductsService {
     private http: HttpClient
   ) { }
 
-  public getProducts(category?: string): Observable<Product[]> {
+  public getProducts(category?: number): Observable<Product[]> {
     let url = `${ this.baseUrl }/products.php`;
 
     if(category){
@@ -31,10 +31,26 @@ export class ProductsService {
   }
 
   public getProductsByPage(page: number): Observable<Product[]> {
-    const begin = (page - 1) * 5;
-
-    let url = `${ this.baseUrl }/products?_sort=name&_start=${ begin }&_limit=5`;
+    let url = `${ this.baseUrl }/products.php?page=${ page }`;
 
     return this.http.get<Product[]>(url);
+  }
+
+  public uploadImage(data: FormData): Observable<any> {
+    let url = `${ this.baseUrl }/upload-image.php`;
+
+    return this.http.post<any>(url, data);
+  }
+
+  public addProduct(product: Product): Observable<string> {
+    let url = `${ this.baseUrl }/products.php`;
+   
+    return this.http.post<string>(url, product);
+  }
+
+  public updateProduct(product: Product): Observable<string> {
+    let url = `${ this.baseUrl }/products.php`;
+
+    return this.http.put<string>(url, product);
   }
 }

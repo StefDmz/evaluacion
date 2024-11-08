@@ -25,9 +25,7 @@ export class CategoriesService {
   }
 
   public getCategoriesByPage(page: number): Observable<Category[]> {
-    const begin = (page - 1) * 5;
-
-    let url = `${ this._baseUrl }/categories?_sort=name&_start=${ begin }&_limit=5`;
+    let url = `${ this._baseUrl }/categories.php?page=${ page }`;
 
     return this.http.get<Category[]>(url);
   }
