@@ -1,5 +1,5 @@
 export interface Order {
-    id: string;
+    id: number;
     clientName: string;
     clientTelephone: string;
     deliveryType: string;
