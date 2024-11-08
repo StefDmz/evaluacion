@@ -7,7 +7,7 @@
                         <th scope="col" class="text-center">Día</th>
                         <th scope="col" class="text-center">Apertura</th>
                         <th scope="col" class="text-center">Cierre</th>
-                        <th scope="col" class="text-center">Opciones</th>
+                        <th scope="col" class="text-center">Editar</th>
                     </tr>
                 </thead>
                 <tbody class="bg-light">
@@ -18,11 +18,9 @@
                         <td>{{ item.close != '' ? item.close : '-' }}</td>
                         <td>
                             <div class="flex items-center gap-2 justify-center">
-                                <button class="p-2 rounded-full text-base text-secondary-100">
+                                <button class="p-2 rounded-full text-base text-secondary-100"
+                                    (click)="editSchedule(item)">
                                     <i class="fa-solid fa-pen-to-square"></i>
-                                </button>
-                                <button class="p-2 rounded-full text-base text-error-100">
-                                    <i class="fa-solid fa-trash"></i>
                                 </button>
                             </div>
                         </td>

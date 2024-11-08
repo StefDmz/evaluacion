@@ -13,7 +13,8 @@ export class AdminSidebarComponent {
     { name: 'Productos', route: 'admin/products', icon: 'fa-solid fa-drumstick-bite' },
     { name: 'Categorías', route: 'admin/categories', icon: 'fa-solid fa-list' },
     { name: 'Horarios', route: 'admin/schedules', icon: 'fa-solid fa-clock' },
-    { name: 'Información', route: 'admin/info', icon: 'fa-solid fa-circle-info' }
+    { name: 'Información', route: 'admin/info', icon: 'fa-solid fa-circle-info' },
+    { name: 'Regresar', route: 'clients', icon: 'fa-solid fa-reply' }
   ];
   
   public toggleMenu() {

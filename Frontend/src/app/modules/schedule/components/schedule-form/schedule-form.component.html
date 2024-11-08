@@ -1,0 +1,66 @@
+<div class="sidebar admin">
+    <div class="sidebar-cover"></div>
+
+    <section class="animate__animated" [class]="isOpen ? 'animate__fadeInRightBig' : 'animate__fadeOutRight'">
+        <div class="w-full relative">
+            <div class="flex flex-col justify-between p-6 break-words h-full overflow-y-auto">
+                
+                <div class="my-10 flex justify-center items-center h-full w-full" *ngIf="loading; else form">
+                    <div class="flex flex-col justify-center items-center w-full">
+                        <div class="loader"></div>
+
+                        <h4 class="text-xl text-center mt-6">Cargando...</h4>
+                    </div>
+                </div>
+                
+                <ng-template #form>
+                    <div class="flex flex-col">
+                        <div class="flex items-center justify-between text-admin-primary-100">
+                            <h3 class="text-2xl font-semibold">Editar día {{ currentSchedule.day }}</h3>
+
+                            <button class="text-3xl" (click)="closeSidebar()">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+                        </div>
+
+                        <form class="my-10 flex flex-col items-center justify-items-center w-full gap-y-8" [formGroup]="scheduleForm">
+                            <div class="flex flex-col gap-y-0.5 w-full">
+                                <label>Hora de apertura:</label>
+                            
+                                <input type="time" class="input-ctrl admin w-full" formControlName="open" required/>
+                            
+                                <small *ngIf="openError" class="text-sm text-error-100 italic">
+                                    *Si hay horario de cierre, debe haber horario de apertura
+                                </small>
+                            </div>
+
+                            <div class="flex flex-col gap-y-0.5 w-full">
+                                <label>Hora de cierre:</label>
+                            
+                                <input type="time" class="input-ctrl admin w-full" formControlName="close" required/>
+
+                                <small *ngIf="closeError" class="text-sm text-error-100 italic">
+                                    *Si hay horario de apertura, debe haber horario de cierre
+                                </small>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="flex justify-between w-full">
+                        <button class="bg-gray-500 rounded-md py-2.5 px-4 flex justify-center items-center text-black hover:bg-gray-400"
+                            (click)="closeSidebar()">
+                            <i class="fa-solid fa-x text-xl"></i>
+                            <p class="ml-3">Cancelar</p>
+                        </button>
+
+                        <button class="bg-admin-primary-100 rounded-md py-2.5 px-4 flex justify-center items-center text-white hover:bg-admin-primary"
+                            (click)="submit()">
+                            <i class="fa-solid fa-check text-xl"></i>
+                            <p class="ml-3">Aceptar</p>
+                        </button>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+    </section>
+</div>

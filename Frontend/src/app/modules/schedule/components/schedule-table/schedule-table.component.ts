@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ScheduleService } from '../../../../core/services/schedule/schedule.service';
 import { Schedule } from '../../../../core/interfaces/schedule.interface';
 
@@ -7,6 +7,8 @@ import { Schedule } from '../../../../core/interfaces/schedule.interface';
   templateUrl: './schedule-table.component.html'
 })
 export class ScheduleTableComponent implements OnInit {
+  @Output() onEditSchedule: EventEmitter<Schedule> = new EventEmitter();
+
   public schedules: Schedule[] = [];
 
   constructor(
@@ -18,5 +20,9 @@ export class ScheduleTableComponent implements OnInit {
       .subscribe(items => {
         this.schedules = items;
       });
+  }
+
+  public editSchedule(item: Schedule): void {
+    this.onEditSchedule.emit(item);
   }
 }
