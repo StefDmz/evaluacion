@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 import { CategoriesService } from '../../../../core/services/categories/categories.service';
 import { Category } from '../../../../core/interfaces/category.interface';
@@ -9,6 +9,8 @@ import { Category } from '../../../../core/interfaces/category.interface';
   styles: ``
 })
 export class CategoriesTableComponent implements OnInit {
+  @Output() onEditCategory: EventEmitter<Category> = new EventEmitter();
+
   public categories: Category[] = [];
   public currentPage: number = 1;
   public pages: number = 1;
@@ -30,6 +32,10 @@ export class CategoriesTableComponent implements OnInit {
 
   public get canNext(): boolean {
     return (this.currentPage != this.pages);
+  }
+
+  public editCategory(item: Category): void {
+    this.onEditCategory.emit(item);
   }
 
   public changePage(page: number): void {

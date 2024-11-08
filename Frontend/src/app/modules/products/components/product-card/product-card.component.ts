@@ -42,7 +42,13 @@ export class ProductCardComponent implements OnInit {
       this.product.description.trim().slice(0, descriptionLength).trim() + '...';
   }
 
+  public get canBuy(): boolean {
+    return (this.product.available && this.product.stock > 0);
+  }
+
   public selectedProduct(): void {
+    if(!this.canBuy) return;
+    
     this.onSelectedProduct.emit(this.product);
   }
 
