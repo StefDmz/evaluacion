@@ -67,43 +67,40 @@ export class ProductFormComponent implements OnInit {
   }
 
   public submit(): void {
-    if(this.productForm.invalid) return;
-    
-    if(this.sidebarType === 'Create' && !this._imageFile){
+    if (this.productForm.invalid) return;
+  
+    if (this.sidebarType === 'Create' && !this._imageFile) {
       this.imageError = true;
       return;
     }
-
+  
     this.loading = true;
+  
+    const isCreate = this.sidebarType === 'Create';
     
-    if(this._imageFile){
+    if (this._imageFile) {
       const formData = new FormData();
       formData.append('imageFile', this._imageFile);
-
+  
       this._productsService.uploadImage(formData)
         .subscribe(x => {
           this.productForm.controls['image'].setValue(x.image);
-
-          if(this.sidebarType === 'Create'){
-            this._productsService.addProduct(this.currentProduct)
-              .subscribe( () => {
-                location.reload();
-              }
-              );
-          } else {
-            this._productsService.updateProduct(this.currentProduct)
-              .subscribe(() => {
-                location.reload();
-              });
-          }
+          this.saveProduct(isCreate);
         });
+    } else {
+      this.saveProduct(isCreate);
     }
-    
-    this._productsService.updateProduct(this.currentProduct)
-      .subscribe(() => {
-        location.reload();
-      });
   }
+  
+  private saveProduct(isCreate: boolean): void {
+    const productRequest = isCreate ? 
+      this._productsService.addProduct(this.currentProduct) : 
+      this._productsService.updateProduct(this.currentProduct);
+      
+    productRequest.subscribe(() => {
+      location.reload();
+    });
+  }  
 
   public closeSidebar(): void {
     this._sidebarService.closeSidebar();

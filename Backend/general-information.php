@@ -14,7 +14,7 @@
     }
     
     function handleGet($pdo) {
-        $sql = "SELECT * FROM GeneralInformation";
+        $sql = "SELECT * FROM GeneralInformation LIMIT 1";
     
         $stmt = $pdo->prepare($sql);  
     

@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { ScheduleComponent } from './schedule.component';
 import { SortPipePipe } from './pipes/sortPipe/sort-pipe.pipe';
 import { ScheduleTableComponent } from './components/schedule-table/schedule-table.component';
+import { ScheduleFormComponent } from './components/schedule-form/schedule-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -10,14 +12,17 @@ import { ScheduleTableComponent } from './components/schedule-table/schedule-tab
   declarations: [
     ScheduleComponent,
     SortPipePipe,
-    ScheduleTableComponent
+    ScheduleTableComponent,
+    ScheduleFormComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule,
   ],
   exports:[
     ScheduleComponent,
     ScheduleTableComponent,
+    ScheduleFormComponent,
   ]
 })
 export class ScheduleModule { }

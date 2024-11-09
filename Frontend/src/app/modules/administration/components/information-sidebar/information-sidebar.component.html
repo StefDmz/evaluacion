@@ -1,0 +1,90 @@
+<div class="sidebar admin">
+    <div class="sidebar-cover"></div>
+
+    <section class="animate__animated" [class]="isOpen ? 'animate__fadeInRightBig' : 'animate__fadeOutRight'">
+        <div class="w-full relative">
+            <div class="flex flex-col justify-between p-6 break-words h-full overflow-y-auto">
+                
+                <div class="my-10 flex justify-center items-center h-full w-full" *ngIf="loading; else form">
+                    <div class="flex flex-col justify-center items-center w-full">
+                        <div class="loader"></div>
+
+                        <h4 class="text-xl text-center mt-6">Cargando...</h4>
+                    </div>
+                </div>
+                
+                <ng-template #form>
+                    <div class="flex flex-col">
+                        <div class="flex items-center justify-between text-admin-primary-100">
+                            <h3 class="text-2xl font-semibold">Editar información</h3>
+
+                            <button class="text-3xl" (click)="closeSidebar()">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+                        </div>
+
+                        <form class="my-10 flex flex-col items-center justify-items-center w-full gap-y-8" [formGroup]="infoForm">
+                            <div class="flex flex-col gap-y-0.5 w-full">
+                                <label>Nombre<span class="text-red-600 font-semibold">*</span>:</label>
+                            
+                                <input type="text" class="input-ctrl admin w-full" placeholder="Nombre del dueño de la tarjeta" formControlName="ownerName" required/>
+                            
+                                <small *ngIf="infoForm.controls['ownerName'].dirty && (infoForm.controls['ownerName'].errors?.['required'] || infoForm.controls['ownerName'].errors?.['maxLength'])" 
+                                    class="text-sm text-error-100 italic">
+                                    *Es necesario llenar este campo sin más de 150 caracteres
+                                </small>
+                            </div>
+
+                            <div class="flex flex-col gap-y-0.5 w-full">
+                                <label>Clabe<span class="text-red-600 font-semibold">*</span>:</label>
+                            
+                                <input type="text" maxlength="18" class="input-ctrl admin w-full" placeholder="Clabe de la tarjeta" formControlName="clabe" required/>
+                            
+                                <small *ngIf="infoForm.controls['clabe'].dirty && (infoForm.controls['clabe'].errors?.['required'] || infoForm.controls['clabe'].errors?.['pattern'])" 
+                                    class="text-sm text-error-100 italic">
+                                    *Este campo debe de llevar 18 dígitos
+                                </small>
+                            </div>
+
+                            <div class="flex flex-col gap-y-0.5 w-full">
+                                <label>Banco<span class="text-red-600 font-semibold">*</span>:</label>
+                            
+                                <input type="text" class="input-ctrl admin w-full" placeholder="Nombre del banco de la tarjeta" formControlName="bankName" required/>
+                            
+                                <small *ngIf="infoForm.controls['bankName'].dirty && (infoForm.controls['bankName'].errors?.['required'] || infoForm.controls['bankName'].errors?.['maxLength'])"
+                                    class="text-sm text-error-100 italic">
+                                    *Es necesario llenar este campo sin más de 50 caracteres
+                                </small>
+                            </div>
+
+                            <div class="flex flex-col gap-y-0.5 w-full">
+                                <label>Imagen logo:</label>
+                            
+                                <input type="file" class="rounded-md border-2 border-admin-primary focus:border-2 focus:ring-0 focus:outline-none focus:border-admin-primary-100 bg-zinc-50 file:border-0 file:bg-admin-primary file:h-8 file:bg-opacity-30 file:px-4" 
+                                    (change)="fileSelected($event)" accept=".png"/>
+
+                                <small *ngIf="imageError" class="text-sm text-error-100 italic">
+                                    *Es necesario que la imágen del logo sea en formato PNG
+                                </small>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="flex justify-between w-full">
+                        <button class="bg-gray-500 rounded-md py-2.5 px-4 flex justify-center items-center text-black hover:bg-gray-400"
+                            (click)="closeSidebar()">
+                            <i class="fa-solid fa-x text-xl"></i>
+                            <p class="ml-3">Cancelar</p>
+                        </button>
+
+                        <button class="bg-admin-primary-100 rounded-md py-2.5 px-4 flex justify-center items-center text-white hover:bg-admin-primary"
+                            (click)="submit()">
+                            <i class="fa-solid fa-check text-xl"></i>
+                            <p class="ml-3">Aceptar</p>
+                        </button>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+    </section>
+</div>

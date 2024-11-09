@@ -5,9 +5,16 @@
 
             <h3 class="font-medium text-2xl">Pastes</h3>
         </div>
-        <button (click)="toggleMenu()" class="text-xl text-accent-100">
-            <i class="fa-solid fa-bars"></i> 
-        </button>
+
+        <div class="flex gap-x-6">
+            <a href="/clients" class="text-xl text-primary-100 cursor-pointer">
+                <i class="fa-solid fa-reply"></i>
+            </a>
+
+            <button (click)="toggleMenu()" class="text-xl text-accent-100">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
     </div>
 
     <!-- Menú Toggle -->
@@ -18,11 +25,24 @@
                 <p class="ml-3">Opciones</p>
             </div>
 
-            <a class="flex justify-center items-center py-1.5 rounded-lg hover:bg-accent"
-                [href]="item.route" *ngFor="let item of options">
+            <a class="flex justify-center items-center py-1.5 rounded-lg hover:bg-accent" [href]="item.route"
+                *ngFor="let item of options">
                 <i [class]="item.icon"></i>
-                
+
                 <p class="ml-3">{{ item.name }}</p>
+            </a>
+
+            <button class="flex justify-center items-center py-1.5 rounded-lg hover:bg-accent"
+                (click)="informationSidebar()">
+                <i class="fa-solid fa-circle-info"></i>
+
+                <p class="ml-3">Información</p>
+            </button>
+
+            <a class="flex justify-center items-center py-1.5 rounded-lg hover:bg-accent" href="/clients">
+                <i class="fa-solid fa-reply"></i>
+
+                <p class="ml-3">Regresar</p>
             </a>
         </div>
     </div>
@@ -39,13 +59,26 @@
                     <i class="fa-solid fa-gear"></i>
                     <p class="ml-3">Opciones</p>
                 </div>
-                
+
                 <div class="flex flex-col justify-center text-lg font-medium">
-                    <a class="flex justify-center items-center py-1.5 rounded-lg hover:bg-accent" 
-                        [href]="item.route" *ngFor="let item of options">
+                    <a class="flex justify-center items-center py-1.5 rounded-lg hover:bg-accent" [href]="item.route"
+                        *ngFor="let item of options">
                         <i [class]="item.icon"></i>
 
                         <p class="ml-3">{{ item.name }}</p>
+                    </a>
+
+                    <button class="flex justify-center items-center py-1.5 rounded-lg hover:bg-accent"
+                        (click)="informationSidebar()">
+                        <i class="fa-solid fa-circle-info"></i>
+
+                        <p class="ml-3">Información</p>
+                    </button>
+
+                    <a class="flex justify-center items-center py-1.5 rounded-lg hover:bg-accent" href="/clients">
+                        <i class="fa-solid fa-reply"></i>
+
+                        <p class="ml-3">Regresar</p>
                     </a>
                 </div>
             </div>
