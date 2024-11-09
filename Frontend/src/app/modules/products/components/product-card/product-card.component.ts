@@ -1,4 +1,4 @@
-import { Component, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
+import { Component, createNgModule, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
 import { Product } from '../../../../core/interfaces/product.interface';
 
 @Component({
