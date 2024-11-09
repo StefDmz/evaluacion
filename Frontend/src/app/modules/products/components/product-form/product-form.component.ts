@@ -7,7 +7,6 @@ import { Product } from '../../../../core/interfaces/product.interface';
 import { ProductsService } from '../../../../core/services/products/products.service';
 import { Category } from '../../../../core/interfaces/category.interface';
 import { CategoriesService } from '../../../../core/services/categories/categories.service';
-import { map, Observable, of } from 'rxjs';
 
 @Component({
   selector: 'product-form',

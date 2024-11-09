@@ -8,9 +8,12 @@
         case 'GET':
             handleGet($pdo);
             break;
+        case 'PUT':
+            handlePut($pdo, $input);
+            break;
     }
     
-    function handleGet($pdo){
+    function handleGet($pdo) {
         $sql = "SELECT * FROM GeneralInformation";
     
         $stmt = $pdo->prepare($sql);  
@@ -20,5 +23,20 @@
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC); 
         
         echo json_encode($result, JSON_UNESCAPED_UNICODE);  
+    }
+
+    function handlePut($pdo, $input) {
+        $sql = "UPDATE GeneralInformation SET ownerName = :ownerName, clabe = :clabe, bankName = :bankName WHERE id = :id";
+
+        $stmt = $pdo->prepare($sql);
+
+        $stmt->execute([
+            'ownerName' => $input['ownerName'],
+            'clabe'     => $input['clabe'],
+            'bankName'  => $input['bankName'],
+            'id'        => $input['id']
+        ]);
+
+        echo json_encode(['message' => 'Information updated correctly:0']);
     }
 ?>

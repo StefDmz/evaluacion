@@ -8,14 +8,14 @@ import { Category } from '../../interfaces/category.interface';
   providedIn: 'root'
 })
 export class CategoriesService {
-  private _baseUrl: string = environment.baseUrl;
+  private _baseUrl: string = environment.baseUrl + "/categories.php";
 
   constructor(
     private http: HttpClient
   ) { }
 
   public getCategories(): Observable<Category[]>{
-    return this.http.get<Category[]>(`${ this._baseUrl }/categories.php`);
+    return this.http.get<Category[]>(this._baseUrl);
   }
 
   public getPages(): Observable<number> {
@@ -25,8 +25,16 @@ export class CategoriesService {
   }
 
   public getCategoriesByPage(page: number): Observable<Category[]> {
-    let url = `${ this._baseUrl }/categories.php?page=${ page }`;
+    let url = `${ this._baseUrl }?page=${ page }`;
 
     return this.http.get<Category[]>(url);
+  }
+
+  public addCategory(category: Category): Observable<string> {
+    return this.http.post<string>(this._baseUrl, category);
+  }
+
+  public updateCategory(category: Category): Observable<string> {
+    return this.http.put<string>(this._baseUrl, category);
   }
 }

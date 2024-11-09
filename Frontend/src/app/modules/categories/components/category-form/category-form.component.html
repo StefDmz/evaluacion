@@ -1,0 +1,81 @@
+<div class="sidebar admin">
+    <div class="sidebar-cover"></div>
+
+    <section class="animate__animated" [class]="isOpen ? 'animate__fadeInRightBig' : 'animate__fadeOutRight'">
+        <div class="w-full relative">
+            <div class="flex flex-col justify-between p-6 break-words h-full overflow-y-auto">
+                
+                <div class="my-10 flex justify-center items-center h-full w-full" *ngIf="loading; else form">
+                    <div class="flex flex-col justify-center items-center w-full">
+                        <div class="loader"></div>
+
+                        <h4 class="text-xl text-center mt-6">Cargando...</h4>
+                    </div>
+                </div>
+                
+                <ng-template #form>
+                    <div class="flex flex-col">
+                        <div class="flex items-center justify-between text-admin-primary-100">
+                            <h3 class="text-2xl font-semibold">{{ sidebarType === 'Create' ? 'Agregar' : 'Editar' }} categoría</h3>
+
+                            <button class="text-3xl" (click)="closeSidebar()">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+                        </div>
+
+                        <form class="my-10 flex flex-col items-center justify-items-center w-full gap-y-8" [formGroup]="categoryForm">
+                            <div class="flex flex-col gap-y-0.5 w-full">
+                                <label>Nombre<span class="text-red-600 font-semibold">*</span>:</label>
+                            
+                                <input type="text" class="input-ctrl admin w-full" maxlength="20" placeholder="Nombre de la categoría" formControlName="name" required/>
+                            
+                                <small *ngIf="categoryForm.controls['name'].dirty && (categoryForm.controls['name'].errors?.['required'] || categoryForm.controls['name'].errors?.['maxLength'])" 
+                                    class="text-sm text-error-100 italic">
+                                    *Es necesario llenar este campo sin más de 20 caracteres
+                                </small>
+                            </div>
+
+                            <div class="flex flex-col gap-y-0.5 w-full">
+                                <label>Icon<span class="text-red-600 font-semibold">*</span>:</label>
+                            
+                                <div class="flex gap-x-2 w-full items-center justify-between">
+                                    <input type="text" class="input-ctrl admin w-full" maxlength="50" placeholder="Nombre del icon (ej: fa-solid fa-heart)" formControlName="icon" required/>
+
+                                    <div class="border-2 rounded-lg border-admin-primary-100 px-2.5 py-1 text-xl">
+                                        <i [class]="currentCategory.icon.length > 0 ? currentCategory.icon : 'fa-solid fa-question'"></i>
+                                    </div>
+                                </div>
+                            
+                                <small class="text-sm text-blue-600 italic">
+                                    ¿No sabes que icon elegir?
+                                    <span class="underline"> 
+                                       <a href="https://fontawesome.com/search?o=r&m=free" target="_blank" class="cursor-pointer"> Has click aquí.</a>
+                                    </span>
+                                </small>
+
+                                <small *ngIf="categoryForm.controls['icon'].dirty && categoryForm.controls['icon'].errors?.['required']"
+                                    class="text-sm text-error-100 italic">
+                                    *Es necesario llenar este campo
+                                </small>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="flex justify-between w-full">
+                        <button class="bg-gray-500 rounded-md py-2.5 px-4 flex justify-center items-center text-black hover:bg-gray-400"
+                            (click)="closeSidebar()">
+                            <i class="fa-solid fa-x text-xl"></i>
+                            <p class="ml-3">Cancelar</p>
+                        </button>
+
+                        <button class="bg-admin-primary-100 rounded-md py-2.5 px-4 flex justify-center items-center text-white hover:bg-admin-primary"
+                            (click)="submit()">
+                            <i class="fa-solid fa-check text-xl"></i>
+                            <p class="ml-3">Aceptar</p>
+                        </button>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+    </section>
+</div>
