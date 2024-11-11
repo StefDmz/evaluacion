@@ -15,6 +15,7 @@ import { SchedulesAdminComponent } from './pages/schedules-admin/schedules-admin
 import { InformationAdminComponent } from './pages/information-admin/information-admin.component';
 import { InformationSidebarComponent } from './components/information-sidebar/information-sidebar.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './pages/login/login.component';
 
 
 
@@ -26,6 +27,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     SchedulesAdminComponent,
     InformationAdminComponent,
     InformationSidebarComponent,
+    LoginComponent,
   ],
   imports: [
     CommonModule,

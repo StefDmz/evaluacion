@@ -6,14 +6,17 @@ import { ProductAdminComponent } from './pages/product-admin/product-admin.compo
 import { CategoryAdminComponent } from './pages/category-admin/category-admin.component';
 import { SchedulesAdminComponent } from './pages/schedules-admin/schedules-admin.component';
 import { InformationAdminComponent } from './pages/information-admin/information-admin.component';
+import { LoginComponent } from './pages/login/login.component';
+import { AuthGuardService } from '../../core/services/auth-guard/auth-guard.service';
 
 const routes: Routes = [
     { path: '', component: AdministrationComponent, children: [
-        { path: '', redirectTo: 'products', pathMatch: 'full' },
-        { path: 'products', component: ProductAdminComponent },
-        { path: 'categories', component: CategoryAdminComponent },
-        { path: 'schedules', component: SchedulesAdminComponent },
-        { path: 'info', component: InformationAdminComponent },
+        { path: '', redirectTo: 'login', pathMatch: 'full' },
+        { path: 'products', component: ProductAdminComponent, canActivate: [AuthGuardService] },
+        { path: 'categories', component: CategoryAdminComponent, canActivate: [AuthGuardService] },
+        { path: 'schedules', component: SchedulesAdminComponent, canActivate: [AuthGuardService] },
+        { path: 'info', component: InformationAdminComponent, canActivate: [AuthGuardService] },
+        { path: 'login', component: LoginComponent }
     ] },
     { path: '**', redirectTo: '' }
 ];
