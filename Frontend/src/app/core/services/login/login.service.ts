@@ -3,6 +3,7 @@ import { environment } from '../../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import Swal from 'sweetalert2';
 import { User } from '../../interfaces/user.interface';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,8 @@ export class LoginService {
   private _baseUrl: string = environment.baseUrl + '/login.php';
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private _router: Router
   ){ }
 
   public get isAuthenticated(): boolean {
@@ -20,7 +22,7 @@ export class LoginService {
 
   public logout(): void {
     localStorage.removeItem('token');
-    location.replace('/clients');
+    this._router.navigate(['/clients']);
   }
 
   public login(user: User): void {
@@ -32,7 +34,7 @@ export class LoginService {
           Swal.fire('Advertencia', 'La contraseña o el usuario son incorrectos', 'warning');
         } else {
           Swal.fire('Bienvenid@', 'Bienvenid@ de vuelta al sistema', 'success').then(() => {
-            location.replace('/admin/products');
+            this._router.navigate(['/admin/products']);
             localStorage.setItem('token', res[0].id);
           });
         }

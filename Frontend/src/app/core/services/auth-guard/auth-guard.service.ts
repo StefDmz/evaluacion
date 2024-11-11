@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate } from '@angular/router';
+import { CanActivate, Router } from '@angular/router';
 import { LoginService } from '../login/login.service';
 import Swal from 'sweetalert2';
 
@@ -8,7 +8,8 @@ import Swal from 'sweetalert2';
 })
 export class AuthGuardService implements CanActivate {
   constructor(
-    private _loginService: LoginService
+    private _loginService: LoginService,
+    private _router: Router
   ) { }
 
   public canActivate(): boolean {
@@ -16,7 +17,7 @@ export class AuthGuardService implements CanActivate {
       return true;
     } else {
       Swal.fire('Adveretncia', 'Debes iniciar sesión antes', 'warning').then(() => {
-        location.replace('/admin/login');
+        this._router.navigate(['/admin/login']);
       });
       return false;
     }
