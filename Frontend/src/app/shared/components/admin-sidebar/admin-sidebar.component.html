@@ -7,9 +7,10 @@
         </div>
 
         <div class="flex gap-x-6">
-            <a href="/clients" class="text-xl text-primary-100 cursor-pointer">
+            <button href="/clients" class="text-xl text-primary-100 cursor-pointer"
+                (click)="logout()">
                 <i class="fa-solid fa-reply"></i>
-            </a>
+            </button>
 
             <button (click)="toggleMenu()" class="text-xl text-accent-100">
                 <i class="fa-solid fa-bars"></i>
@@ -25,21 +26,24 @@
                 <p class="ml-3">Opciones</p>
             </div>
 
-            <a class="flex justify-center items-center py-1.5 rounded-lg hover:bg-accent" [href]="item.route"
-                *ngFor="let item of options">
-                <i [class]="item.icon"></i>
+            <div class="flex flex-col justify-center items-center" *ngIf="isAuthenticated">
+                <a class="flex justify-center items-center py-1.5 rounded-lg hover:bg-accent" [href]="item.route"
+                    *ngFor="let item of options">
+                    <i [class]="item.icon"></i>
 
-                <p class="ml-3">{{ item.name }}</p>
-            </a>
+                    <p class="ml-3">{{ item.name }}</p>
+                </a>
 
-            <button class="flex justify-center items-center py-1.5 rounded-lg hover:bg-accent"
-                (click)="informationSidebar()">
-                <i class="fa-solid fa-circle-info"></i>
+                <button class="flex justify-center items-center py-1.5 rounded-lg hover:bg-accent"
+                    (click)="informationSidebar()">
+                    <i class="fa-solid fa-circle-info"></i>
 
-                <p class="ml-3">Información</p>
-            </button>
+                    <p class="ml-3">Información</p>
+                </button>
+            </div>
 
-            <a class="flex justify-center items-center py-1.5 rounded-lg hover:bg-accent" href="/clients">
+            <a class="flex justify-center items-center py-1.5 rounded-lg hover:bg-accent" 
+                (click)="logout()">
                 <i class="fa-solid fa-reply"></i>
 
                 <p class="ml-3">Regresar</p>
@@ -61,25 +65,28 @@
                 </div>
 
                 <div class="flex flex-col justify-center text-lg font-medium">
-                    <a class="flex justify-center items-center py-1.5 rounded-lg hover:bg-accent" [href]="item.route"
-                        *ngFor="let item of options">
-                        <i [class]="item.icon"></i>
+                    <div class="flex flex-col justify-center items-center" *ngIf="isAuthenticated">
+                        <a class="flex justify-center items-center py-1.5 rounded-lg hover:bg-accent" [href]="item.route"
+                            *ngFor="let item of options">
+                            <i [class]="item.icon"></i>
 
-                        <p class="ml-3">{{ item.name }}</p>
-                    </a>
+                            <p class="ml-3">{{ item.name }}</p>
+                        </a>
+
+                        <button class="flex justify-center items-center py-1.5 rounded-lg hover:bg-accent"
+                            (click)="informationSidebar()">
+                            <i class="fa-solid fa-circle-info"></i>
+
+                            <p class="ml-3">Información</p>
+                        </button>
+                    </div>
 
                     <button class="flex justify-center items-center py-1.5 rounded-lg hover:bg-accent"
-                        (click)="informationSidebar()">
-                        <i class="fa-solid fa-circle-info"></i>
-
-                        <p class="ml-3">Información</p>
-                    </button>
-
-                    <a class="flex justify-center items-center py-1.5 rounded-lg hover:bg-accent" href="/clients">
+                        (click)="logout()">
                         <i class="fa-solid fa-reply"></i>
 
                         <p class="ml-3">Regresar</p>
-                    </a>
+                    </button>
                 </div>
             </div>
         </div>
