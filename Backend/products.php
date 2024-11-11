@@ -94,14 +94,22 @@
     }
 
     function handleDelete($pdo, $input) {
-        $sql = "DELETE FROM Products WHERE id = : id";
+        try {
+            $id = $_GET['id'];
 
-        $stmt = $pdo->prepare($sql);
-        
-        $stmt->execute([
-            'id' => $input['id']
-        ]);
+            $sql = "DELETE FROM Products WHERE id = :id";
 
-        echo json_encode(['message' => 'Product deleted correctly:0']);
+            $stmt = $pdo->prepare($sql);
+            
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+            $stmt->execute();
+
+            echo json_encode(['message' => 'Product deleted correctly']);
+        } catch (PDOException $e) {
+            echo json_encode(['message' => 'Error: Database error - ' . $e->getMessage()]);
+        } catch (Exception $e) {
+            echo json_encode(['message' => 'Error: ' . $e->getMessage()]);
+        }
     }
 ?>

@@ -72,14 +72,23 @@
     }
 
     function handleDelete($pdo, $input) {
-        $sql = "DELETE FROM Categories WHERE id = : id";
+        try {
+            $id = $_GET['id'];
+            
+            $sql = "DELETE FROM Categories WHERE id = :id";
+    
+            $stmt = $pdo->prepare($sql);
+            
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 
-        $stmt = $pdo->prepare($sql);
-        
-        $stmt->execute([
-            'id' => $input['id']
-        ]);
-
-        echo json_encode(['message' => 'Category deleted correctly:0']);
-    }
+            $stmt->execute();
+    
+            echo json_encode(['message' => 'Category deleted correctly']);
+    
+        } catch (PDOException $e) {
+            echo json_encode(['message' => 'Error: Database error - ' . $e->getMessage()]);
+        } catch (Exception $e) {
+            echo json_encode(['message' => 'Error: ' . $e->getMessage()]);
+        }
+    }    
 ?>
