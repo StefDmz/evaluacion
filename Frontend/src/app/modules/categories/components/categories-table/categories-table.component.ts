@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import Swal from 'sweetalert2';
 
 import { CategoriesService } from '../../../../core/services/categories/categories.service';
 import { Category } from '../../../../core/interfaces/category.interface';
@@ -45,5 +46,52 @@ export class CategoriesTableComponent implements OnInit {
       .subscribe(item => {
         this.categories = item
       });
+  }
+
+  public deleteCategory(category: Category): void {
+    const swal = Swal.mixin({
+      customClass: {
+        confirmButton: 'bg-admin-primary-100 rounded-md py-2.5 px-4 flex justify-center items-center text-white hover:bg-admin-primary',
+        denyButton: 'bg-gray-500 rounded-md py-2.5 px-4 flex justify-center items-center text-black hover:bg-gray-400'
+      },
+      buttonsStyling: false
+    });
+
+    swal.fire({
+      title: `¿Está seguro de eliminar la categoría ${ category.name }?`,
+      text: `Está acción no se puede revertir`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Eliminar',
+      cancelButtonText: 'Regresar',
+      reverseButtons: true
+    }).then((result) => {
+      if(result.isConfirmed){
+        this._categoriesService.deleteCategory(category.id)
+          .subscribe((response: any) => {
+           if(response.message.toUpperCase().includes('ERROR')){
+            swal.fire({
+              title: 'Error',
+              text: response.message,
+              icon: 'error'
+            });
+           } else {
+            swal.fire({
+              title: 'Eliminado',
+              text: 'Categoría eliminada correctamente',
+              icon: 'success'
+            }).then(() => {
+              location.reload();
+            });
+           }
+          });
+      } else {
+        swal.fire({
+          title: 'Cancelado',
+          text: 'Tu operación ha sido cancelada',
+          icon: 'info'
+        });
+      }
+    });
   }
 }

@@ -53,4 +53,10 @@ export class ProductsService {
 
     return this.http.put<string>(url, product);
   }
+
+  public deleteProduct(id: number): Observable<string> {
+    let url = `${ this.baseUrl }/products.php?id=${ id }`;
+
+    return this.http.delete<string>(url);
+  }
 }
